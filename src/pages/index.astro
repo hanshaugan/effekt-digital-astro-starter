@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import VideoSection from '../components/VideoSection.astro';
+import TechStackSection from '../components/TechStackSection.astro';
+---
+<BaseLayout>
+  <main>
+    <section class="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
+      <div>
+        <p class="mb-7 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">CRM · AI · Sales-tech · Salgsflyt</p>
+        <h1 class="max-w-5xl text-6xl font-semibold leading-[0.94] tracking-[-0.075em] sm:text-7xl lg:text-8xl">CRM er bare starten.</h1>
+        <p class="mt-8 max-w-2xl text-xl leading-relaxed text-muted sm:text-2xl">Vi hjelper B2B-selskaper med å bygge moderne salgsprosesser gjennom CRM, AI, video og arbeidsflyt som faktisk fungerer i hverdagen.</p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/kontakt/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">Book en rådgivningsprat</a>
+          <a href="/tjenester/" class="rounded-full border border-line px-6 py-4 text-sm font-semibold">Se hvordan vi jobber</a>
+        </div>
+      </div>
+      <aside class="rounded-[2rem] border border-line bg-white p-7 shadow-2xl shadow-stone-900/5">
+        {['Nye leads – beriket automatisk', 'Oppfølging – riktig neste steg', 'Pipeline – oversikt uten mas', 'AI-assistent – notater og forslag', 'Lead-to-cash – fra interesse til kunde'].map((item) => (
+          <div class="mb-3 rounded-2xl border border-line bg-sand px-5 py-4 last:mb-0">
+            <p class="font-semibold">{item.split(' – ')[0]}</p>
+            <p class="text-sm text-muted">{item.split(' – ')[1]}</p>
+          </div>
+        ))}
+      </aside>
+    </section>
+
+    <VideoSection
+      class="mt-28"
+      eyebrow="Handslag"
+      title="Ditt nye digitale salgsrom"
+      text="Handslag samler all kundeinformasjon på ett sted — så beslutningstakere får med seg alt, uten e-post frem og tilbake."
+      src="https://tv.effektdigital.no/video/vaer-skeptisk-til-uavhengig-crm-radgivning-cre8"
+      type="tella"
+    />
+    <section class="mt-28">
+      <SectionHeading title="CRM skal gi fart. Ikke mer administrasjon." text="Mange selskaper har investert i CRM, men opplever fortsatt dårlig datakvalitet, tilfeldig oppfølging og lav adopsjon. Da er problemet sjelden bare systemet. Det er arbeidsflyten rundt." />
+      <div class="grid gap-4 md:grid-cols-3">
+        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">Selgerne bruker ikke CRM</h3><p class="mt-4 text-muted">Systemet blir et rapporteringsverktøy for ledelsen, ikke et arbeidsverktøy for salgsteamet.</p></article>
+        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">Oppfølging skjer tilfeldig</h3><p class="mt-4 text-muted">Leads, møter, tilbud og aktiviteter faller mellom stolene fordi prosessen ikke er tydelig nok.</p></article>
+        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">For mange verktøy, for lite flyt</h3><p class="mt-4 text-muted">Marked, salg og økonomi sitter ofte på hver sin øy. Det skaper friksjon fra lead til kunde.</p></article>
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2.25rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
+      <div class="mx-auto max-w-3xl">
+        <h2 class="text-3xl font-semibold leading-none tracking-[-0.06em] sm:text-4xl lg:text-5xl">Systemagnostisk. Praktisk. Resultatorientert.</h2>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">Vi anbefaler ikke verktøy fordi vi må. Vi anbefaler det som passer deres salgsprosess, team og ambisjonsnivå.</p>
+        <p class="mt-8 text-sm font-medium tracking-[0.02em] text-white/45 sm:text-base">
+          HubSpot · Pipedrive · Attio · + mer
+        </p>
+      </div>
+    </section>
+
+    <section class="mt-28">
+      <SectionHeading eyebrow="Metode" title="Vi starter med arbeidsflyten, ikke systemet." text="Først finner vi ut hvordan salg faktisk skjer. Deretter bygger vi teknologien rundt prosessen." />
+      <div class="grid gap-4 md:grid-cols-4">
+        {[
+          ['01','Kartlegg','Dagens prosess, verktøy, data og flaskehalser.'],
+          ['02','Design','Salgsflyt, pipeline, roller, aktiviteter og styringspunkter.'],
+          ['03','Bygg','CRM, automasjoner, integrasjoner og praktiske arbeidsflater.'],
+          ['04','Forankre','Trening, justering og adopsjon i salgsteamet.']
+        ].map(([n,t,d]) => <article class="rounded-[1.6rem] bg-sand-2 p-6"><p class="font-bold text-accent">{n}</p><h3 class="mt-8 text-xl font-semibold tracking-[-0.04em]">{t}</h3><p class="mt-3 text-muted">{d}</p></article>)}
+      </div>
+    </section>
+
+    <section class="my-28 text-center">
+      <p class="mx-auto max-w-5xl text-5xl font-semibold leading-none tracking-[-0.07em] sm:text-6xl lg:text-7xl">Det beste CRM-systemet er ikke det med flest funksjoner. Det er det <span class="text-accent">selgerne faktisk bruker.</span></p>
+    </section>
+
+    <TechStackSection class="mb-28" />
+
+    <section class="rounded-[2.25rem] border border-line bg-white p-8 lg:p-14">
+      <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <h2 class="max-w-3xl text-4xl font-semibold leading-none tracking-[-0.06em] sm:text-5xl">Vil du bygge en mer moderne salgsoperasjon?</h2>
+          <p class="mt-5 max-w-2xl text-xl text-muted">La oss ta en uforpliktende prat om CRM, sales-tech og hvordan dere kan få bedre flyt fra lead til kunde.</p>
+        </div>
+        <a href="/kontakt/" class="shrink-0 rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">Kontakt Hans</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

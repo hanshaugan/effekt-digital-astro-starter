@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+const posts = (await getCollection('blog')).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<BaseLayout title="Innsikt – Effekt Digital">
+  <main>
+    <SectionHeading eyebrow="Innsikt" title="Praktiske perspektiver på moderne salg, CRM og AI." text="Korte artikler, observasjoner og playbooks om hvordan B2B-selskaper kan bygge bedre salgsflyt." />
+    <div class="grid gap-4 md:grid-cols-2">
+      {posts.map((post) => <a href={`/blog/${post.id}/`} class="rounded-[1.75rem] border border-line bg-white p-7 transition hover:-translate-y-1"><p class="text-sm font-semibold text-accent">{post.data.category}</p><h2 class="mt-4 text-2xl font-semibold tracking-[-0.04em]">{post.data.title}</h2><p class="mt-3 text-muted">{post.data.description}</p></a>)}
+    </div>
+  </main>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+const services = [
+  ['CRM-rådgivning og implementering','Valg, oppsett og forbedring av CRM basert på behov, modenhet og hvordan teamet faktisk jobber.'],
+  ['AI og automasjon i salget','Reduser manuelt arbeid med databerikelse, oppfølging, møteoppsummeringer og next-best-actions.'],
+  ['Salgsprosess og pipeline','Bygg en tydelig salgsflyt fra første kontakt til signert kunde — med bedre kontroll og mindre friksjon.'],
+  ['Lead-to-cash','Koble sammen marked, salg, CRM, tilbud, kundereise og økonomi slik at hele prosessen henger sammen.'],
+  ['Sales enablement','Gi selgerne struktur, innhold, maler og arbeidsflyt som gjør det enklere å følge opp riktig.'],
+  ['Systemrydding og adopsjon','Rydd i felter, prosesser, dashboards og rutiner slik at CRM igjen blir enkelt, nyttig og relevant.']
+];
+---
+<BaseLayout title="Tjenester – Effekt Digital">
+  <main>
+    <SectionHeading eyebrow="Tjenester" title="Moderne sales operations for B2B-selskaper." text="Vi kombinerer salgsforståelse, CRM, AI og praktisk implementering for å bygge salgsprosesser som faktisk fungerer i hverdagen." />
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {services.map(([title, text]) => <article class="rounded-[1.75rem] border border-line bg-white p-7"><h2 class="text-2xl font-semibold tracking-[-0.04em]">{title}</h2><p class="mt-4 text-muted">{text}</p></article>)}
+    </div>
+    <section class="mt-20 rounded-[2rem] bg-accent-soft p-8 lg:p-12">
+      <h2 class="max-w-3xl text-4xl font-semibold tracking-[-0.06em]">Typiske prosjekter</h2>
+      <ul class="mt-8 grid gap-3 text-lg text-muted md:grid-cols-2">
+        <li>• Velge riktig CRM for ny salgsprosess</li>
+        <li>• Rydde opp i eksisterende HubSpot/Pipedrive-oppsett</li>
+        <li>• Bygge AI-assistert leadoppfølging</li>
+        <li>• Koble skjemaer, nyhetsbrev og CRM</li>
+        <li>• Lage pipeline, dashboards og salgsrutiner</li>
+        <li>• Trene teamet slik at løsningen faktisk tas i bruk</li>
+      </ul>
+    </section>
+  </main>
+</BaseLayout>
