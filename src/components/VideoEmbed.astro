@@ -1,0 +1,42 @@
+---
+import { resolveVideo, type VideoPlatform } from '../lib/resolveVideo';
+
+interface Props {
+  /** Delingslenke eller embed-URL fra YouTube, Tella, Vidyard, Wistia osv. */
+  src: string;
+  type?: VideoPlatform;
+  title?: string;
+  caption?: string;
+}
+
+const { src, type, title = 'Innebygd video', caption } = Astro.props;
+const video = resolveVideo(src, type);
+---
+
+<figure class="not-prose my-10">
+  <div class="relative aspect-video w-full overflow-hidden rounded-2xl bg-ink">
+    {video.kind === 'iframe' ? (
+      <iframe
+        class="absolute inset-0 h-full w-full border-0"
+        src={video.embedUrl}
+        title={title}
+        loading="lazy"
+        allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      />
+    ) : (
+      <video
+        class="absolute inset-0 h-full w-full object-cover"
+        src={video.embedUrl}
+        controls
+        playsinline
+        preload="metadata"
+      >
+        <track kind="captions" />
+      </video>
+    )}
+  </div>
+  {caption && (
+    <figcaption class="mt-3 text-center text-sm text-muted">{caption}</figcaption>
+  )}
+</figure>

@@ -3,8 +3,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import VideoSection from '../components/VideoSection.astro';
 import TechStackSection from '../components/TechStackSection.astro';
+import { SITE, absoluteUrl } from '../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = SITE.defaultTitle;
+const description = SITE.defaultDescription;
+const url = absoluteUrl('/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
 ---
-<BaseLayout>
+<BaseLayout {title} {description} {schema}>
   <main>
     <section class="grid items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
       <div>

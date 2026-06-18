@@ -2,19 +2,58 @@
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { SITE, absoluteUrl } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Sti fra public/, f.eks. /images/blog/slug/bilde.jpg */
+  image?: string;
+  type?: 'website' | 'article';
+  /** Schema.org JSON-LD – sendes som @graph */
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
+}
 
 const {
-  title = 'Effekt Digital – Moderne salgsoperasjoner',
-  description = 'CRM, AI og sales-tech for B2B-selskaper som vil ha bedre salgsflyt.'
+  title = SITE.defaultTitle,
+  description = SITE.defaultDescription,
+  image,
+  type = 'website',
+  schema,
+  noindex = false,
 } = Astro.props;
+
+const canonicalUrl = absoluteUrl(Astro.url.pathname);
+const ogImage = image ? absoluteUrl(image) : undefined;
 ---
+
 <!doctype html>
-<html lang="no">
+<html lang={SITE.language}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={SITE.locale} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <meta name="twitter:card" content={ogImage ? 'summary_large_image' : 'summary'} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
   </head>
   <body class="font-sans antialiased">
     <div class="mx-auto max-w-7xl px-6 py-7 lg:px-8">

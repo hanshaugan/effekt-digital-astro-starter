@@ -1,7 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { absoluteUrl } from '../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = 'Kontakt – Effekt Digital';
+const description =
+  'Book en prat om CRM, AI og salgsflyt. Effekt Digital hjelper B2B-selskaper med moderne salgsprosesser og sales-tech.';
+const url = absoluteUrl('/kontakt/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
 ---
-<BaseLayout title="Kontakt – Effekt Digital">
+<BaseLayout {title} {description} {schema}>
   <main class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
     <div>
       <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">Kontakt</p>

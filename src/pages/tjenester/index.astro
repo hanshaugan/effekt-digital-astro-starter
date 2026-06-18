@@ -1,6 +1,14 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
 const services = [
   ['CRM-rådgivning og implementering','Valg, oppsett og forbedring av CRM basert på behov, modenhet og hvordan teamet faktisk jobber.'],
   ['AI og automasjon i salget','Reduser manuelt arbeid med databerikelse, oppfølging, møteoppsummeringer og next-best-actions.'],
@@ -9,8 +17,18 @@ const services = [
   ['Sales enablement','Gi selgerne struktur, innhold, maler og arbeidsflyt som gjør det enklere å følge opp riktig.'],
   ['Systemrydding og adopsjon','Rydd i felter, prosesser, dashboards og rutiner slik at CRM igjen blir enkelt, nyttig og relevant.']
 ];
+
+const title = 'Tjenester – Effekt Digital';
+const description =
+  'CRM-rådgivning, AI i salg, salgsprosess, lead-to-cash og sales enablement for B2B-selskaper.';
+const url = absoluteUrl('/tjenester/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
 ---
-<BaseLayout title="Tjenester – Effekt Digital">
+<BaseLayout {title} {description} {schema}>
   <main>
     <SectionHeading eyebrow="Tjenester" title="Moderne sales operations for B2B-selskaper." text="Vi kombinerer salgsforståelse, CRM, AI og praktisk implementering for å bygge salgsprosesser som faktisk fungerer i hverdagen." />
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

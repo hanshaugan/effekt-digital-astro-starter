@@ -6,15 +6,22 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "migrate:blog": "node --env-file=.env scripts/migrate-hubspot-blog.mjs",
+    "migrate:blog:dry": "node --env-file=.env scripts/migrate-hubspot-blog.mjs --dry-run --limit 5"
   },
   "dependencies": {
     "@astrojs/mdx": "latest",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/typography": "^0.5.20",
     "@tailwindcss/vite": "latest",
     "astro": "latest",
     "tailwindcss": "latest"
   },
   "overrides": {
     "vite": "^7"
+  },
+  "devDependencies": {
+    "turndown": "^7.2.4"
   }
 }

@@ -1,68 +1,19 @@
 ---
+import { resolveVideo, type VideoPlatform } from '../lib/resolveVideo';
+
 interface Props {
   title: string;
   text: string;
-  /** YouTube/Vimeo/Tella-lenke, embed-URL, eller sti til .mp4 (f.eks. /video/demo.mp4) */
+  /** YouTube/Vimeo/Tella/Vidyard/Wistia-lenke, embed-URL, eller sti til .mp4 (f.eks. /video/demo.mp4) */
   src: string;
   eyebrow?: string;
-  type?: 'youtube' | 'vimeo' | 'tella' | 'file';
+  type?: VideoPlatform;
   /** Forbeholdsbilde ved selvhostet video */
   poster?: string;
   class?: string;
 }
 
 const { title, text, src, eyebrow, type, poster, class: className } = Astro.props;
-
-function resolveVideo(
-  url: string,
-  explicitType?: Props['type']
-): { kind: 'iframe' | 'video'; embedUrl: string } {
-  const isFile =
-    explicitType === 'file' ||
-    /\.(mp4|webm|ogg)(\?|$)/i.test(url) ||
-    (url.startsWith('/') && !url.includes('youtube') && !url.includes('vimeo'));
-
-  if (isFile) {
-    return { kind: 'video', embedUrl: url };
-  }
-
-  const youtubeMatch = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
-  );
-  if (youtubeMatch || explicitType === 'youtube') {
-    const id = youtubeMatch?.[1] ?? url.split('/').pop();
-    return {
-      kind: 'iframe',
-      embedUrl: `https://www.youtube.com/embed/${id}?rel=0`
-    };
-  }
-
-  const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
-  if (vimeoMatch || explicitType === 'vimeo') {
-    const id = vimeoMatch?.[1] ?? url.split('/').pop();
-    return {
-      kind: 'iframe',
-      embedUrl: `https://player.vimeo.com/video/${id}`
-    };
-  }
-
-  const isTella =
-    explicitType === 'tella' ||
-    url.includes('tella.tv') ||
-    url.includes('effektdigital.no');
-
-  if (isTella) {
-    const base = url.replace(/\/embed\/?$/, '').replace(/\/view\/?$/, '').replace(/\/?$/, '');
-    return { kind: 'iframe', embedUrl: `${base}/embed` };
-  }
-
-  if (url.includes('youtube.com/embed') || url.includes('player.vimeo.com')) {
-    return { kind: 'iframe', embedUrl: url };
-  }
-
-  return { kind: 'video', embedUrl: url };
-}
-
 const video = resolveVideo(src, type);
 ---
 

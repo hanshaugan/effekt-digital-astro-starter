@@ -1,7 +1,24 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const title = 'CRM-helsesjekk – Effekt Digital';
+const description =
+  'Gratis vurdering av CRM og salgsprosess: datakvalitet, oppfølging, pipeline, adopsjon og automasjon for B2B-bedrifter.';
+const url = absoluteUrl('/landingssider/crm-helsesjekk/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
 ---
-<BaseLayout title="CRM-helsesjekk – Effekt Digital">
+<BaseLayout {title} {description} {schema}>
   <main class="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-start">
     <section>
       <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">Gratis vurdering</p>

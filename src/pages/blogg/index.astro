@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+const title = 'Effekt Bloggen – Effekt Digital';
+const description =
+  'Praktiske perspektiver på digital markedsføring, salg, CRM og AI for B2B-bedrifter.';
+const url = absoluteUrl('/blogg/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+---
+
+<BaseLayout {title} {description} {schema}>
+  <main>
+    <SectionHeading
+      eyebrow="Effekt Bloggen"
+      title="Innsikt om digital markedsføring og salg."
+      text="Artikler om inbound marketing, CRM, AI og B2B-salg — migrert fra HubSpot og videreutviklet i Astro."
+    />
+    <div class="grid gap-4 md:grid-cols-2">
+      {
+        posts.map((post) => (
+          <a
+            href={`/blogg/${post.id}/`}
+            class="group overflow-hidden rounded-[1.75rem] border border-line bg-white transition hover:-translate-y-1"
+          >
+            {post.data.image && (
+              <img
+                src={post.data.image}
+                alt=""
+                class="aspect-[16/9] w-full object-cover"
+                loading="lazy"
+              />
+            )}
+            <div class="p-7">
+              <p class="text-sm font-semibold text-accent">{post.data.category}</p>
+              <h2 class="mt-4 text-2xl font-semibold tracking-[-0.04em] group-hover:text-accent">
+                {post.data.title}
+              </h2>
+              <p class="mt-3 text-muted">{post.data.description}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>
