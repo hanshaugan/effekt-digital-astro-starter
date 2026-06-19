@@ -1,16 +1,16 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import { absoluteUrl } from '../../lib/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { absoluteUrl } from '../lib/site';
 import {
   organizationSchema,
   schemaGraph,
   webPageSchema,
   websiteSchema,
-} from '../../lib/schema';
+} from '../lib/schema';
 
 const title = 'Takk for henvendelsen – Effekt Digital';
 const description = 'Vi har mottatt meldingen din og tar kontakt så snart vi kan.';
-const url = absoluteUrl('/kontakt/takk/');
+const url = absoluteUrl('/takk/');
 const schema = schemaGraph(
   organizationSchema(),
   websiteSchema(),

@@ -1,2 +1,3 @@
 /blog    /blogg    301
 /blog/*  /blogg/:splat  301
+/kontakt/takk/  /takk/  301
