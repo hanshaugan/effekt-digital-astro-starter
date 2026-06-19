@@ -23,10 +23,9 @@ const labelClass = 'mb-2 block text-sm font-semibold text-ink';
 <form
   name={formName}
   method="POST"
-  action={successPath}
   data-netlify="true"
   netlify-honeypot="bot-field"
-  class="grid gap-5"
+  class="contact-form grid gap-5"
 >
   <input type="hidden" name="form-name" value={formName} />
 
@@ -89,10 +88,44 @@ const labelClass = 'mb-2 block text-sm font-semibold text-ink';
     />
   </div>
 
+  <p class="hidden text-sm text-red-700" data-form-error>
+    Noe gikk galt. Prøv igjen, eller send e-post til hans@effektdigital.no.
+  </p>
+
   <button
     type="submit"
-    class="inline-flex w-full justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:bg-ink/90 sm:w-auto"
+    class="inline-flex w-full justify-center rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:bg-ink/90 disabled:opacity-60 sm:w-auto"
   >
     {submitLabel}
   </button>
 </form>
+
+<script define:vars={{ formName, successPath }}>
+  const form = document.querySelector(`form[name="${formName}"]`);
+  const errorEl = form?.querySelector('[data-form-error]');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    errorEl?.classList.add('hidden');
+    submitBtn?.setAttribute('disabled', 'true');
+
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Netlify Forms svarte med ${response.status}`);
+      }
+
+      window.location.href = successPath;
+    } catch {
+      errorEl?.classList.remove('hidden');
+      submitBtn?.removeAttribute('disabled');
+    }
+  });
+</script>
