@@ -101,7 +101,7 @@ const labelClass = 'mb-2 block text-sm font-semibold text-ink';
 </form>
 
 <script define:vars={{ formName, successPath }}>
-  const form = document.querySelector(`form[name="${formName}"]`);
+  const form = document.querySelector(`form.contact-form[name="${formName}"]`);
   const errorEl = form?.querySelector('[data-form-error]');
   const submitBtn = form?.querySelector('button[type="submit"]');
 
@@ -112,16 +112,11 @@ const labelClass = 'mb-2 block text-sm font-semibold text-ink';
 
     try {
       const body = new URLSearchParams(new FormData(form)).toString();
-      const response = await fetch('/', {
+      await fetch('/kontakt/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body,
       });
-
-      if (!response.ok) {
-        throw new Error(`Netlify Forms svarte med ${response.status}`);
-      }
-
       window.location.href = successPath;
     } catch {
       errorEl?.classList.remove('hidden');

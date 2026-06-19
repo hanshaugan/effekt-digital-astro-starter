@@ -56,6 +56,14 @@ const ogImage = image ? absoluteUrl(image) : undefined;
     )}
   </head>
   <body class="font-sans antialiased">
+    <!-- Netlify Forms: statisk kopi for deploy-deteksjon -->
+    <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="fornavn" />
+      <input name="etternavn" />
+      <input name="epost" />
+      <textarea name="melding"></textarea>
+    </form>
     <div class="mx-auto max-w-7xl px-6 py-7 lg:px-8">
       <Navbar />
       <slot />
