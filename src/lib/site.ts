@@ -7,6 +7,8 @@ export const SITE = {
   locale: 'nb_NO',
   language: 'no',
   email: 'hans@effektdigital.no',
+  /** Lim inn Calendly-lenke for å vise «Book møte» på kontaktsiden. La stå tom for å skjule. */
+  calendlyUrl: 'https://calendly.com/hans-effektdigital/30min',
 } as const;
 
 export const ORG_ID = `${SITE.url}/#organization`;

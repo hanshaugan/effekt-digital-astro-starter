@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const title = 'Takk for henvendelsen – Effekt Digital';
+const description = 'Vi har mottatt meldingen din og tar kontakt så snart vi kan.';
+const url = absoluteUrl('/kontakt/takk/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+---
+
+<BaseLayout {title} {description} {schema} noindex>
+  <main class="mx-auto max-w-2xl text-center">
+    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">Takk!</p>
+    <h1 class="text-5xl font-semibold leading-none tracking-[-0.07em] sm:text-6xl">
+      Vi har mottatt meldingen din.
+    </h1>
+    <p class="mt-7 text-xl leading-relaxed text-muted">
+      Vi leser gjennom det du skrev og tar kontakt på e-post så snart vi kan — vanligvis innen én
+      arbeidsdag.
+    </p>
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href="/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+        Tilbake til forsiden
+      </a>
+      <a
+        href="/blogg/"
+        class="rounded-full border border-line px-6 py-4 text-sm font-semibold text-ink"
+      >
+        Les bloggen
+      </a>
+    </div>
+  </main>
+</BaseLayout>
