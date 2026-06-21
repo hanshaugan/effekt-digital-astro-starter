@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, absoluteUrl } from '../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = 'Personvern – Effekt Digital';
+const description =
+  'Slik Effekt Digital behandler personopplysninger på effektdigital.no — skjemaer, kontakt og tekniske tjenester.';
+const url = absoluteUrl('/personvern/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+const { legalName, orgNumber, email, phone, address } = SITE;
+---
+
+<BaseLayout {title} {description} {schema}>
+  <main class="mx-auto max-w-3xl">
+    <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">Personvern</p>
+    <h1 class="text-5xl font-semibold tracking-[-0.06em]">Personvernerklæring</h1>
+    <p class="mt-6 text-lg text-muted">
+      Denne erklæringen gjelder for {SITE.url} og beskriver hvordan {legalName} behandler
+      personopplysninger når du besøker nettstedet, fyller ut skjema eller tar kontakt med oss.
+    </p>
+    <p class="mt-2 text-sm text-muted">Sist oppdatert: juni 2026</p>
+
+    <article class="prose prose-stone mt-12 max-w-none prose-headings:tracking-[-0.03em] prose-a:text-accent">
+      <h2>Behandlingsansvarlig</h2>
+      <p>
+        {legalName}<br />
+        {address.street}, {address.postalCode} {address.city}, {address.country}<br />
+        Org.nr. {orgNumber}<br />
+        E-post: <a href={`mailto:${email}`}>{email}</a><br />
+        Telefon: <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+      </p>
+
+      <h2>Hvilke opplysninger samler vi inn?</h2>
+      <p>Avhengig av hvordan du kontakter oss, kan vi behandle:</p>
+      <ul>
+        <li>Navn, e-postadresse og telefonnummer</li>
+        <li>Selskap og stilling/rolle</li>
+        <li>CRM-system, antall selgere og annen informasjon du oppgir i skjema</li>
+        <li>Fritekst i meldinger (f.eks. utfordringer med salg eller CRM)</li>
+        <li>Tekniske data som IP-adresse, nettlesertype og sidevisninger (serverlogger)</li>
+      </ul>
+
+      <h2>Skjema på nettstedet</h2>
+      <p>
+        Kontaktskjema, CRM-helsesjekk og VekstPilot-booking behandles via
+        <strong>Netlify Forms</strong>. Innsendte data lagres hos Netlify og gjøres tilgjengelig for
+        oss slik at vi kan svare på henvendelsen. Vi ber kun om opplysninger som er nødvendige for å
+        følge opp forespørselen.
+      </p>
+
+      <h2>Booking og e-post</h2>
+      <p>
+        Hvis du booker møte via <strong>Calendly</strong>, behandles opplysningene i Calendlys
+        system i tråd med deres personvernregler. E-post du sender direkte til oss behandles i vår
+        e-postløsning.
+      </p>
+
+      <h2>Formål og rettslig grunnlag</h2>
+      <p>Vi behandler personopplysninger for å:</p>
+      <ul>
+        <li>Svare på henvendelser og følge opp salgs- og kundedialog</li>
+        <li>Gi tilgang til bookede møter og relevant informasjon</li>
+        <li>Forbedre nettstedet og sikre drift (tekniske logger)</li>
+      </ul>
+      <p>
+        Behandlingen skjer på grunnlag av samtykke (skjema), avtaleforhold eller berettiget interesse
+        (kundedialog og drift), jf. personopplysningsloven og GDPR.
+      </p>
+
+      <h2>Lagringstid</h2>
+      <p>
+        Henvendelser fra skjema og e-post lagres så lenge det er nødvendig for å håndtere forespørselen
+        og eventuelt kundeforholdet, normalt inntil 2 år etter siste kontakt dersom det ikke oppstår
+        et kundeforhold. Opplysninger i aktive kundeforhold lagres i tråd med avtale og bokføringsregler.
+      </p>
+
+      <h2>Deling med tredjeparter</h2>
+      <p>Vi selger ikke personopplysninger. Vi bruker følgende databehandlere:</p>
+      <ul>
+        <li><strong>Netlify</strong> — hosting av nettsted og skjemainnsendinger</li>
+        <li><strong>Calendly</strong> — booking av møter (når du bruker kalenderlenken)</li>
+        <li><strong>GitHub</strong> — kildekode og deploy av nettstedet (ikke skjemadata)</li>
+      </ul>
+      <p>
+        Databehandlere behandler opplysninger på våre vegne og i henhold til databehandleravtaler der
+        dette kreves.
+      </p>
+
+      <h2>Informasjonskapsler</h2>
+      <p>
+        Nettstedet bruker i dag ingen egne analyse- eller markedsføringskapsler. Calendly kan sette
+        nødvendige kapsler når du bruker booking-løsningen. Vi kan senere legge til anonym
+        bruksstatistikk — i så fall oppdateres denne siden.
+      </p>
+
+      <h2>Dine rettigheter</h2>
+      <p>Du har rett til innsyn, retting, sletting og begrensning av behandling, samt å protestere
+        og be om dataportabilitet der det er relevant. Du kan også klage til Datatilsynet.</p>
+      <p>
+        For å utøve rettighetene dine, kontakt oss på
+        <a href={`mailto:${email}`}>{email}</a>.
+      </p>
+
+      <h2>Endringer</h2>
+      <p>
+        Vi kan oppdatere denne erklæringen ved endringer i nettsted, skjema eller teknisk oppsett.
+        Vesentlige endringer vil fremgå på denne siden.
+      </p>
+    </article>
+  </main>
+</BaseLayout>

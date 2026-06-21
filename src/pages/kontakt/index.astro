@@ -60,6 +60,18 @@ const schema = schemaGraph(
           </div>
           <span class="text-sm font-semibold text-accent">→</span>
         </a>
+
+        <div class="rounded-[1.75rem] border border-line bg-sand p-6 text-sm text-muted">
+          <p class="font-semibold text-ink">{SITE.legalName}</p>
+          <p class="mt-2">
+            {SITE.address.street}, {SITE.address.postalCode} {SITE.address.city}
+          </p>
+          <p class="mt-1">
+            <a class="text-accent hover:underline" href={`tel:${SITE.phone.replace(/\s/g, '')}`}>
+              {SITE.phone}
+            </a>
+          </p>
+        </div>
       </div>
     </div>
 
