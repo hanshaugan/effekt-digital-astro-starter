@@ -64,6 +64,26 @@ const ogImage = image ? absoluteUrl(image) : undefined;
       <input name="epost" />
       <textarea name="melding"></textarea>
     </form>
+    <form name="vekstpilot-diagnose" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="vekstpilot-diagnose" />
+      <input name="navn" />
+      <input name="selskap" />
+      <input name="epost" />
+      <input name="telefon" />
+      <select name="antall-selgere"></select>
+      <select name="crm"></select>
+      <textarea name="salgshindreret"></textarea>
+    </form>
+    <form name="crm-helsesjekk" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="crm-helsesjekk" />
+      <input name="navn" />
+      <input name="selskap" />
+      <input name="epost" />
+      <input name="telefon" />
+      <select name="crm"></select>
+      <select name="crm-bruk"></select>
+      <textarea name="utfordring"></textarea>
+    </form>
     <div class="mx-auto max-w-7xl px-6 py-7 lg:px-8">
       <Navbar />
       <slot />

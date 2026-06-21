@@ -288,7 +288,7 @@ async function main() {
     const existing = await fs.readdir(BLOG_DIR);
     await Promise.all(
       existing
-        .filter((file) => file.endsWith('.mdx') || file.endsWith('.md'))
+        .filter((file) => (file.endsWith('.mdx') || file.endsWith('.md')) && !file.startsWith('_'))
         .map((file) => fs.unlink(path.join(BLOG_DIR, file))),
     );
     console.log('Fjernet eksisterende bloggfiler.');

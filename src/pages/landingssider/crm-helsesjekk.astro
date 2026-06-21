@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import CrmHelsesjekkForm from '../../components/CrmHelsesjekkForm.astro';
 import { absoluteUrl } from '../../lib/site';
 import {
   organizationSchema,
@@ -32,9 +33,7 @@ const schema = schemaGraph(
       </ul>
     </section>
     <aside class="rounded-[2rem] border border-line bg-white p-7">
-      <h2 class="text-2xl font-semibold tracking-[-0.04em]">Start med en CRM-helsesjekk</h2>
-      <p class="mt-3 text-muted">Bytt denne boksen med Fillout embed eller Netlify form.</p>
-      <a href="mailto:hans@effektdigital.no?subject=CRM-helsesjekk" class="mt-8 inline-flex rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">Send forespørsel</a>
+      <CrmHelsesjekkForm />
     </aside>
   </main>
 </BaseLayout>

@@ -1,0 +1,190 @@
+---
+const formName = 'vekstpilot-diagnose';
+const postPath = '/landingssider/vekstpilot/';
+
+const inputClass =
+  'w-full rounded-xl border border-line bg-sand px-4 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent-soft';
+const labelClass = 'text-xs font-semibold tracking-wide text-ink';
+---
+
+<div
+  id="vekstpilot-book-backdrop"
+  class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="vekstpilot-book-title"
+>
+  <div class="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl">
+    <div class="relative bg-ink px-8 pb-6 pt-8">
+      <button
+        type="button"
+        id="vekstpilot-book-close"
+        class="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-white/15 text-white transition hover:bg-white/25"
+        aria-label="Lukk"
+      >
+        ✕
+      </button>
+      <p class="mb-3 inline-flex rounded-full bg-accent-soft px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-wider text-accent">
+        VekstPilot Diagnose
+      </p>
+      <h3 id="vekstpilot-book-title" class="text-xl font-bold tracking-[-0.02em] text-white">
+        Book din diagnose
+      </h3>
+      <p class="mt-1 text-sm text-white/50">Vi tar kontakt innen én arbeidsdag for å avtale tidspunkt.</p>
+    </div>
+
+    <div id="vekstpilot-book-form-wrap" class="p-8">
+      <form
+        name={formName}
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="vekstpilot-book-form grid gap-3"
+      >
+        <input type="hidden" name="form-name" value={formName} />
+        <p class="hidden" aria-hidden="true">
+          <input name="bot-field" tabindex="-1" autocomplete="off" />
+        </p>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-navn">Navn <span class="text-accent">*</span></label>
+            <input class={inputClass} type="text" id="vp-navn" name="navn" required placeholder="Ola Nordmann" />
+          </div>
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-selskap">Selskap <span class="text-accent">*</span></label>
+            <input class={inputClass} type="text" id="vp-selskap" name="selskap" required placeholder="Bedriften AS" />
+          </div>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-epost">E-post <span class="text-accent">*</span></label>
+            <input class={inputClass} type="email" id="vp-epost" name="epost" required placeholder="ola@bedriften.no" />
+          </div>
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-telefon">Telefon</label>
+            <input class={inputClass} type="tel" id="vp-telefon" name="telefon" placeholder="+47 900 00 000" />
+          </div>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-selgere">Antall selgere</label>
+            <select class={inputClass} id="vp-selgere" name="antall-selgere">
+              <option value="">Velg...</option>
+              <option>1–2</option>
+              <option>3–5</option>
+              <option>6–10</option>
+              <option>11+</option>
+            </select>
+          </div>
+          <div class="grid gap-1">
+            <label class={labelClass} for="vp-crm">Nåværende CRM</label>
+            <select class={inputClass} id="vp-crm" name="crm">
+              <option value="">Velg...</option>
+              <option>HubSpot</option>
+              <option>Pipedrive</option>
+              <option>Dult</option>
+              <option>Salesforce</option>
+              <option>Annet</option>
+              <option>Ingen</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid gap-1">
+          <label class={labelClass} for="vp-hindrer">
+            Hva er det største salgshinderet ditt akkurat nå? <span class="text-accent">*</span>
+          </label>
+          <textarea
+            class:list={[inputClass, 'min-h-20 resize-y']}
+            id="vp-hindrer"
+            name="salgshindreret"
+            required
+            placeholder="F.eks. vi får nok leads men konverterer for dårlig, eller selgerne bruker ikke CRM..."
+          ></textarea>
+        </div>
+
+        <p class="hidden text-sm text-red-700" data-form-error>
+          Noe gikk galt. Prøv igjen, eller send e-post til hans@effektdigital.no.
+        </p>
+
+        <button
+          type="submit"
+          class="mt-1 w-full rounded-xl bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-accent disabled:opacity-60"
+        >
+          Send inn — vi tar kontakt innen én dag
+        </button>
+        <p class="text-center text-xs text-muted">Diagnosen koster kr 4 900 og krediteres ved videre samarbeid.</p>
+      </form>
+    </div>
+
+    <div id="vekstpilot-book-success" class="hidden p-10 text-center">
+      <p class="mb-4 text-4xl">✅</p>
+      <h3 class="mb-2 text-lg font-bold">Takk — vi tar kontakt!</h3>
+      <p class="text-sm leading-relaxed text-muted">
+        Vi bekrefter tidspunkt for VekstPilot Diagnosen innen én arbeidsdag.<br />
+        Sjekk gjerne innboksen din.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ postPath }}>
+  const backdrop = document.getElementById('vekstpilot-book-backdrop');
+  const closeBtn = document.getElementById('vekstpilot-book-close');
+  const formWrap = document.getElementById('vekstpilot-book-form-wrap');
+  const successEl = document.getElementById('vekstpilot-book-success');
+  const form = document.querySelector('.vekstpilot-book-form');
+  const errorEl = form?.querySelector('[data-form-error]');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
+  function openBook() {
+    backdrop?.classList.remove('hidden');
+    backdrop?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeBook() {
+    backdrop?.classList.add('hidden');
+    backdrop?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.js-open-vekstpilot-book').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openBook();
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeBook);
+  backdrop?.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeBook();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeBook();
+  });
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    errorEl?.classList.add('hidden');
+    submitBtn?.setAttribute('disabled', 'true');
+
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      await fetch(postPath, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      formWrap?.classList.add('hidden');
+      successEl?.classList.remove('hidden');
+      setTimeout(closeBook, 4000);
+    } catch {
+      errorEl?.classList.remove('hidden');
+      submitBtn?.removeAttribute('disabled');
+    }
+  });
+</script>

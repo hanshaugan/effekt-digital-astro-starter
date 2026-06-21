@@ -1,0 +1,135 @@
+---
+interface Props {
+  heading?: string;
+  intro?: string;
+  submitLabel?: string;
+  successPath?: string;
+}
+
+const {
+  heading = 'Start med en CRM-helsesjekk',
+  intro = 'Fyll ut skjemaet — vi tar kontakt innen én arbeidsdag med en kort vurdering.',
+  submitLabel = 'Send inn',
+  successPath = '/takk/',
+} = Astro.props;
+
+const formName = 'crm-helsesjekk';
+const postPath = '/landingssider/crm-helsesjekk/';
+
+const inputClass =
+  'w-full rounded-2xl border border-line bg-sand px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-soft';
+const labelClass = 'mb-1.5 block text-sm font-semibold text-ink';
+---
+
+<form
+  name={formName}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="crm-helsesjekk-form grid gap-4"
+>
+  <input type="hidden" name="form-name" value={formName} />
+
+  <p class="hidden" aria-hidden="true">
+    <label>
+      Ikke fyll ut dette feltet
+      <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  {heading && <h2 class="text-2xl font-semibold tracking-[-0.04em]">{heading}</h2>}
+  {intro && <p class="-mt-1 text-sm text-muted">{intro}</p>}
+
+  <div>
+    <label class={labelClass} for={`${formName}-navn`}>Navn</label>
+    <input class={inputClass} type="text" id={`${formName}-navn`} name="navn" autocomplete="name" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-selskap`}>Selskap</label>
+    <input class={inputClass} type="text" id={`${formName}-selskap`} name="selskap" autocomplete="organization" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-epost`}>E-post</label>
+    <input class={inputClass} type="email" id={`${formName}-epost`} name="epost" autocomplete="email" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-telefon`}>Telefon <span class="font-normal text-muted">(valgfritt)</span></label>
+    <input class={inputClass} type="tel" id={`${formName}-telefon`} name="telefon" autocomplete="tel" />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-crm`}>Hvilket CRM bruker dere?</label>
+    <select class={inputClass} id={`${formName}-crm`} name="crm" required>
+      <option value="">Velg...</option>
+      <option>HubSpot</option>
+      <option>Pipedrive</option>
+      <option>Dult</option>
+      <option>Salesforce</option>
+      <option>SuperOffice</option>
+      <option>Annet</option>
+      <option>Har ikke CRM ennå</option>
+    </select>
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-bruk`}>Hvor aktivt bruker teamet CRM i dag?</label>
+    <select class={inputClass} id={`${formName}-bruk`} name="crm-bruk" required>
+      <option value="">Velg...</option>
+      <option>Daglig — det er en del av arbeidsflyten</option>
+      <option>Ukentlig — brukes, men ikke konsekvent</option>
+      <option>Sjelden — mange hopper over det</option>
+      <option>Nesten aldri — vi har det, men bruker det lite</option>
+    </select>
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-utfordring`}>Hva fungerer dårligst akkurat nå?</label>
+    <textarea
+      class:list={[inputClass, 'min-h-28 resize-y']}
+      id={`${formName}-utfordring`}
+      name="utfordring"
+      rows="4"
+      required
+      placeholder="F.eks. dårlig datakvalitet, leads som faller mellom stolene, pipeline vi ikke stoler på, eller at selgerne ikke bruker systemet..."
+    ></textarea>
+  </div>
+
+  <p class="hidden text-sm text-red-700" data-form-error>
+    Noe gikk galt. Prøv igjen, eller send e-post til hans@effektdigital.no.
+  </p>
+
+  <button
+    type="submit"
+    class="inline-flex w-full justify-center rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90 disabled:opacity-60"
+  >
+    {submitLabel}
+  </button>
+</form>
+
+<script define:vars={{ formName, postPath, successPath }}>
+  const form = document.querySelector(`form.crm-helsesjekk-form[name="${formName}"]`);
+  const errorEl = form?.querySelector('[data-form-error]');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    errorEl?.classList.add('hidden');
+    submitBtn?.setAttribute('disabled', 'true');
+
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      await fetch(postPath, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      window.location.href = successPath;
+    } catch {
+      errorEl?.classList.remove('hidden');
+      submitBtn?.removeAttribute('disabled');
+    }
+  });
+</script>
