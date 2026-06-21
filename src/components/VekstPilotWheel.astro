@@ -2,8 +2,9 @@
 ---
 
 <div class="wheel-layout grid items-center gap-10 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16">
-  <div class="mx-auto w-full max-w-[420px] lg:max-w-none">
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="h-auto w-full" aria-label="VekstPilot-modellen">
+  <div class="mx-auto w-full max-w-[min(72vw,280px)] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[420px]">
+    <div class="aspect-square w-full">
+    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-label="VekstPilot-modellen">
       <defs>
         <marker id="arr-right" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
           <path d="M0,0.5 L5,3 L0,5.5" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -70,6 +71,7 @@
       <text x="250" y="243" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="-0.5">VekstPilot</text>
       <text x="250" y="263" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#1f5f54" letter-spacing="1">AV EFFEKT DIGITAL</text>
     </svg>
+    </div>
   </div>
 
   <div class="grid gap-8 sm:grid-cols-2">
@@ -126,12 +128,13 @@
 
 <div
   id="wheel-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/45 p-6"
+  class="fixed inset-0 z-50 hidden overflow-y-auto overscroll-contain bg-black/45 px-4 py-6"
   role="dialog"
   aria-modal="true"
   aria-labelledby="wheel-modal-title"
 >
-  <div class="relative w-full max-w-md rounded-2xl bg-white p-8 shadow-xl">
+  <div class="mx-auto flex min-h-[calc(100%-3rem)] max-w-md items-center justify-center">
+  <div id="wheel-modal-dialog" class="relative w-full rounded-2xl bg-white p-6 shadow-xl sm:p-8">
     <button
       type="button"
       id="wheel-modal-close"
@@ -145,12 +148,14 @@
     <h3 id="wheel-modal-title" class="mb-4 text-2xl font-semibold tracking-[-0.04em]"></h3>
     <div id="wheel-modal-body" class="text-sm leading-relaxed text-muted"></div>
   </div>
+  </div>
 </div>
 
 <script>
   import { wheelData } from '../lib/vekstpilot-wheel';
 
   const modal = document.getElementById('wheel-modal');
+  const wheelDialog = document.getElementById('wheel-modal-dialog');
   const bar = document.getElementById('wheel-modal-bar');
   const tag = document.getElementById('wheel-modal-tag');
   const title = document.getElementById('wheel-modal-title');
@@ -172,12 +177,13 @@
       </ul>
     `;
     modal.classList.remove('hidden');
-    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
   }
 
   function closeWheel() {
     modal?.classList.add('hidden');
-    modal?.classList.remove('flex');
+    document.body.style.overflow = '';
+    modal?.scrollTo(0, 0);
   }
 
   document.querySelectorAll('[data-wheel-key]').forEach((el) => {
@@ -186,7 +192,7 @@
 
   closeBtn?.addEventListener('click', closeWheel);
   modal?.addEventListener('click', (e) => {
-    if (e.target === modal) closeWheel();
+    if (!wheelDialog?.contains(e.target)) closeWheel();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeWheel();

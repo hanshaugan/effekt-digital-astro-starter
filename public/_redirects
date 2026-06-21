@@ -9,3 +9,6 @@
 
 # Gammel personvernside
 /retningslinjer-for-personvern/  /personvern/  301
+
+# HubSpot sitemap → Astro sitemap
+/sitemap.xml  /sitemap-index.xml  301

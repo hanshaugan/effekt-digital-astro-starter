@@ -9,13 +9,17 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
 
 <div
   id="vekstpilot-book-backdrop"
-  class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/50 p-6"
+  class="fixed inset-0 z-[60] hidden overflow-y-auto overscroll-contain bg-black/50 px-4 py-6 sm:px-6"
   role="dialog"
   aria-modal="true"
   aria-labelledby="vekstpilot-book-title"
 >
-  <div class="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-xl">
-    <div class="relative bg-ink px-8 pb-6 pt-8">
+  <div class="mx-auto flex min-h-[calc(100%-3rem)] w-full max-w-lg items-center justify-center">
+    <div
+      id="vekstpilot-book-dialog"
+      class="relative flex w-full max-h-[min(90dvh,calc(100dvh-3rem))] flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
+    >
+      <div class="relative shrink-0 bg-ink px-6 pb-5 pt-7 sm:px-8 sm:pb-6 sm:pt-8">
       <button
         type="button"
         id="vekstpilot-book-close"
@@ -33,7 +37,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
       <p class="mt-1 text-sm text-white/50">Vi tar kontakt innen én arbeidsdag for å avtale tidspunkt.</p>
     </div>
 
-    <div id="vekstpilot-book-form-wrap" class="p-8">
+    <div id="vekstpilot-book-form-wrap" class="overflow-y-auto overscroll-contain p-6 sm:p-8">
       <form
         name={formName}
         method="POST"
@@ -120,7 +124,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
       </form>
     </div>
 
-    <div id="vekstpilot-book-success" class="hidden p-10 text-center">
+    <div id="vekstpilot-book-success" class="hidden overflow-y-auto p-8 text-center sm:p-10">
       <p class="mb-4 text-4xl">✅</p>
       <h3 class="mb-2 text-lg font-bold">Takk — vi tar kontakt!</h3>
       <p class="text-sm leading-relaxed text-muted">
@@ -128,11 +132,13 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
         Sjekk gjerne innboksen din.
       </p>
     </div>
+    </div>
   </div>
 </div>
 
 <script define:vars={{ postPath }}>
   const backdrop = document.getElementById('vekstpilot-book-backdrop');
+  const dialog = document.getElementById('vekstpilot-book-dialog');
   const closeBtn = document.getElementById('vekstpilot-book-close');
   const formWrap = document.getElementById('vekstpilot-book-form-wrap');
   const successEl = document.getElementById('vekstpilot-book-success');
@@ -142,14 +148,13 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
 
   function openBook() {
     backdrop?.classList.remove('hidden');
-    backdrop?.classList.add('flex');
     document.body.style.overflow = 'hidden';
   }
 
   function closeBook() {
     backdrop?.classList.add('hidden');
-    backdrop?.classList.remove('flex');
     document.body.style.overflow = '';
+    backdrop?.scrollTo(0, 0);
   }
 
   document.querySelectorAll('.js-open-vekstpilot-book').forEach((btn) => {
@@ -161,7 +166,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
 
   closeBtn?.addEventListener('click', closeBook);
   backdrop?.addEventListener('click', (e) => {
-    if (e.target === backdrop) closeBook();
+    if (!dialog?.contains(e.target)) closeBook();
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeBook();

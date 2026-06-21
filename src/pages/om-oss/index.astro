@@ -39,8 +39,11 @@ const principles = [
 ];
 
 const partners = [
-  ['HubSpot', 'CRM, marketing automation og salgsverktøy for vekstbedrifter.'],
-  ['Dult', 'Norsk CRM-alternativ for team som vil ha en enkel og moderne salgsplattform.'],
+  ['HubSpot', 'CRM, marketing automation og salgsverktøy for vekstbedrifter.', 'https://www.hubspot.com'],
+  ['Pipedrive', 'CRM med fokus på pipeline, aktiviteter og enkelhet for salgsteam.', 'https://www.pipedrive.com'],
+  ['Dult', 'Norsk CRM-alternativ for team som vil ha en enkel og moderne salgsplattform.', 'https://dult.io'],
+  ['TwentyThree', 'Video- og webinarplattform for profesjonell videomarkedsføring og leadgenerering.', 'https://www.twentythree.com'],
+  ['ProspectFinder', 'AI-drevet prospektering og lead-kvalifisering for B2B-salg.', 'https://prospectfinder.ai'],
 ];
 ---
 
@@ -111,11 +114,20 @@ const partners = [
         title="Verktøy vi jobber med."
         text="Vi er ikke bundet til én plattform. Her er noen av de vi oftest anbefaler og implementerer."
       />
-      <div class="grid gap-4 md:grid-cols-2">
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {
-          partners.map(([name, text]) => (
+          partners.map(([name, text, url]) => (
             <article class="rounded-[1.75rem] bg-sand p-7">
-              <h2 class="text-2xl font-semibold tracking-[-0.04em]">{name}</h2>
+              <h2 class="text-2xl font-semibold tracking-[-0.04em]">
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="transition hover:text-accent"
+                >
+                  {name}
+                </a>
+              </h2>
               <p class="mt-3 text-muted">{text}</p>
             </article>
           ))
