@@ -76,6 +76,8 @@ function formatMarkdown(markdown) {
   return markdown
     .replace(/\{%[\s\S]*?%\}/g, '')
     .replace(/\{\{cta\([^)]*\)\}\}/gi, '')
+    .replace(/\{\{\s*script\\?_embed\([^}]+\}\}/gi, '')
+    .replace(/\{\{[\s\S]*?\}\}/g, '')
     .replace(/!\[([^\]]*)\]\(<([^>]+)>\)/g, '![$1]($2)')
     .replace(/\]\(<([^>]+)>\)/g, ']($1)')
     .replace(/(^[*+-] .+)\n\n+(?=^[*+-] )/gm, '$1\n')
