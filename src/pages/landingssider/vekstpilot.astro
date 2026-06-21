@@ -70,9 +70,9 @@ const packages = [
 ];
 ---
 <BaseLayout {title} {description} {schema}>
-  <main class="-mx-2">
+  <main>
   <!-- Hero -->
-  <section class="py-16 lg:py-24">
+  <section>
     <p class="mb-8 inline-flex rounded-full bg-accent-soft px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent">
       VekstPilot — av Effekt Digital
     </p>
@@ -83,7 +83,7 @@ const packages = [
       VekstPilot er vår metode for å kartlegge hva som faktisk stopper veksten din — og bygge systemet som får alle delene til å virke sammen.
     </p>
     <div class="mt-8 flex flex-wrap items-center gap-4">
-      <a href="#diagnose" class="inline-flex rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent">
+      <a href="#diagnose" class="inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90">
         Start med en diagnose
       </a>
       <a href="#modellen" class="text-sm text-muted transition hover:text-ink">Se modellen →</a>
@@ -91,7 +91,7 @@ const packages = [
   </section>
 
   <!-- Dark strip -->
-  <section class="-mx-6 bg-ink px-6 py-14 text-white lg:-mx-8 lg:px-8 lg:py-16">
+  <section class="mt-28 rounded-[2rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
     <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <h2 class="text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">
         De fleste B2B-selskaper feiler ikke fordi de mangler ett verktøy. De feiler fordi <span class="text-accent-soft">ingenting henger sammen.</span>
@@ -105,7 +105,7 @@ const packages = [
   </section>
 
   <!-- Modellen -->
-  <section id="modellen" class="py-16 lg:py-20">
+  <section id="modellen" class="mt-28">
     <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Modellen</p>
     <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">Fem elementer. Én samlet salgsmotor.</h2>
     <p class="mb-12 max-w-md text-muted">
@@ -115,7 +115,7 @@ const packages = [
   </section>
 
   <!-- Diagnose -->
-  <section id="diagnose" class="-mx-6 border-y border-line bg-white px-6 py-16 lg:-mx-8 lg:px-8 lg:py-20">
+  <section id="diagnose" class="mt-28 rounded-[2rem] border border-line bg-white p-8 lg:p-12">
     <div class="grid gap-12 lg:grid-cols-2 lg:gap-20">
       <div>
         <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Slik starter vi</p>
@@ -125,7 +125,7 @@ const packages = [
         </p>
         <button
           type="button"
-          class="js-open-vekstpilot-book inline-flex rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent"
+          class="js-open-vekstpilot-book inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90"
         >
           Book Diagnose — kr 4 900
         </button>
@@ -150,19 +150,21 @@ const packages = [
   </section>
 
   <!-- Pakker -->
-  <section class="py-16 lg:py-20">
+  <section class="mt-28">
     <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Videre samarbeid</p>
     <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">Velg nivå etter behov</h2>
     <p class="mb-10 max-w-md text-muted">
       Etter diagnosen vet vi nøyaktig hva som gir mest effekt. Alle pakker bygger på funnene fra Diagnosen.
     </p>
-    <div class="grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-3">
+    <div class="grid gap-4 md:grid-cols-3">
       {
         packages.map((pkg) => (
           <article
             class:list={[
-              'flex flex-col p-7',
-              pkg.featured ? 'bg-ink text-white' : 'bg-white',
+              'flex flex-col rounded-[1.75rem] border p-7',
+              pkg.featured
+                ? 'border-line bg-ink text-white'
+                : 'border-line bg-white',
             ]}
           >
             <p class="mb-3 text-[0.7rem] font-semibold uppercase tracking-wider text-accent">{pkg.badge}</p>
@@ -185,14 +187,14 @@ const packages = [
   </section>
 
   <!-- CTA -->
-  <section class="py-16 text-center lg:py-20">
+  <section class="mt-28 rounded-[2rem] border border-line bg-white p-8 text-center lg:p-14">
     <h2 class="text-4xl font-semibold tracking-[-0.04em]">Klar for å se hva som faktisk stopper veksten?</h2>
     <p class="mx-auto mt-4 max-w-md text-muted">
       Start med en diagnose. 90 minutter gir deg et klarere bilde av salgsmotoren din enn det meste annet.
     </p>
     <button
       type="button"
-      class="js-open-vekstpilot-book mt-8 inline-flex rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-white transition hover:bg-accent"
+      class="js-open-vekstpilot-book mt-8 inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90"
     >
       Book VekstPilot Diagnose
     </button>
