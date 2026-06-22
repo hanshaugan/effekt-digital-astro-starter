@@ -3,8 +3,8 @@ const formName = 'vekstpilot-diagnose';
 const postPath = '/landingssider/vekstpilot/';
 
 const inputClass =
-  'w-full rounded-xl border border-line bg-sand px-4 py-2.5 text-sm text-ink outline-none transition focus:border-accent focus:bg-white focus:ring-2 focus:ring-accent-soft';
-const labelClass = 'text-xs font-semibold tracking-wide text-ink';
+  'w-full rounded-2xl border border-line bg-sand px-5 py-3.5 text-base text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-soft';
+const labelClass = 'mb-1.5 block text-sm font-semibold text-ink';
 ---
 
 <div
@@ -14,7 +14,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
   aria-modal="true"
   aria-labelledby="vekstpilot-book-title"
 >
-  <div class="mx-auto flex min-h-[calc(100%-3rem)] w-full max-w-lg items-center justify-center">
+  <div class="mx-auto flex w-full max-w-lg items-center justify-center py-4 sm:min-h-[calc(100%-3rem)]">
     <div
       id="vekstpilot-book-dialog"
       class="relative flex w-full max-h-[min(90dvh,calc(100dvh-3rem))] flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
@@ -43,14 +43,14 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
-        class="vekstpilot-book-form grid gap-3"
+        class="vekstpilot-book-form grid gap-4"
       >
         <input type="hidden" name="form-name" value={formName} />
         <p class="hidden" aria-hidden="true">
           <input name="bot-field" tabindex="-1" autocomplete="off" />
         </p>
 
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div class="grid gap-4 sm:grid-cols-2">
           <div class="grid gap-1">
             <label class={labelClass} for="vp-navn">Navn <span class="text-accent">*</span></label>
             <input class={inputClass} type="text" id="vp-navn" name="navn" required placeholder="Ola Nordmann" />
@@ -61,7 +61,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
           </div>
         </div>
 
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div class="grid gap-4 sm:grid-cols-2">
           <div class="grid gap-1">
             <label class={labelClass} for="vp-epost">E-post <span class="text-accent">*</span></label>
             <input class={inputClass} type="email" id="vp-epost" name="epost" required placeholder="ola@bedriften.no" />
@@ -72,7 +72,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
           </div>
         </div>
 
-        <div class="grid gap-3 sm:grid-cols-2">
+        <div class="grid gap-4 sm:grid-cols-2">
           <div class="grid gap-1">
             <label class={labelClass} for="vp-selgere">Antall selgere</label>
             <select class={inputClass} id="vp-selgere" name="antall-selgere">
@@ -116,7 +116,7 @@ const labelClass = 'text-xs font-semibold tracking-wide text-ink';
 
         <button
           type="submit"
-          class="mt-1 w-full rounded-xl bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-accent disabled:opacity-60"
+          class="mt-1 w-full rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:bg-ink/90 disabled:opacity-60"
         >
           Send inn — vi tar kontakt innen én dag
         </button>
