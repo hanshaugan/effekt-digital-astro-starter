@@ -2,6 +2,10 @@
 /blog/*  /blogg/:splat  301
 /kontakt/takk/  /takk/  301
 
+# Gammel Dult demo-URL (HubSpot)
+/demo-dult.io/  /demo-dult/  301
+/demo-dult.io   /demo-dult/  301
+
 # Gamle HubSpot-tjenestesider
 /tjenester/inbound-salg/        /landingssider/vekstpilot/  301
 /tjenester/inbound-marketing/   /landingssider/vekstpilot/  301
