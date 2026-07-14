@@ -84,6 +84,15 @@ const ogImage = image ? absoluteUrl(image) : undefined;
       <select name="crm-bruk"></select>
       <textarea name="utfordring"></textarea>
     </form>
+    <form name="dult-demo" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="dult-demo" />
+      <input name="navn" />
+      <input name="selskap" />
+      <input name="epost" />
+      <input name="telefon" />
+      <select name="antall-selgere"></select>
+      <textarea name="melding"></textarea>
+    </form>
     <div class="mx-auto max-w-7xl px-6 py-7 lg:px-8">
       <Navbar />
       <slot />

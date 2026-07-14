@@ -1,0 +1,121 @@
+---
+interface Props {
+  heading?: string;
+  intro?: string;
+  submitLabel?: string;
+  successPath?: string;
+}
+
+const {
+  heading = 'Bestill en demo',
+  intro = 'Fyll ut skjemaet — vi tar kontakt innen én arbeidsdag for å avtale en uforpliktende demo av Dult.',
+  submitLabel = 'Be om demo',
+  successPath = '/takk/',
+} = Astro.props;
+
+const formName = 'dult-demo';
+const postPath = '/demo-dult.io/';
+
+const inputClass =
+  'w-full rounded-2xl border border-line bg-sand px-4 py-3 text-ink outline-none transition focus:border-accent focus:ring-2 focus:ring-accent-soft';
+const labelClass = 'mb-1.5 block text-sm font-semibold text-ink';
+---
+
+<form
+  name={formName}
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  class="dult-demo-form grid gap-4"
+>
+  <input type="hidden" name="form-name" value={formName} />
+
+  <p class="hidden" aria-hidden="true">
+    <label>
+      Ikke fyll ut dette feltet
+      <input name="bot-field" tabindex="-1" autocomplete="off" />
+    </label>
+  </p>
+
+  {heading && <h2 class="text-2xl font-semibold tracking-[-0.04em]">{heading}</h2>}
+  {intro && <p class="-mt-1 text-sm text-muted">{intro}</p>}
+
+  <div>
+    <label class={labelClass} for={`${formName}-navn`}>Navn</label>
+    <input class={inputClass} type="text" id={`${formName}-navn`} name="navn" autocomplete="name" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-selskap`}>Selskap</label>
+    <input class={inputClass} type="text" id={`${formName}-selskap`} name="selskap" autocomplete="organization" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-epost`}>E-post</label>
+    <input class={inputClass} type="email" id={`${formName}-epost`} name="epost" autocomplete="email" required />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-telefon`}>Telefon <span class="font-normal text-muted">(valgfritt)</span></label>
+    <input class={inputClass} type="tel" id={`${formName}-telefon`} name="telefon" autocomplete="tel" />
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-selgere`}>Hvor mange selgere har dere?</label>
+    <select class={inputClass} id={`${formName}-selgere`} name="antall-selgere" required>
+      <option value="">Velg...</option>
+      <option>1</option>
+      <option>2–5</option>
+      <option>6–10</option>
+      <option>11–25</option>
+      <option>26+</option>
+    </select>
+  </div>
+
+  <div>
+    <label class={labelClass} for={`${formName}-melding`}>Hva vil dere få ut av en demo? <span class="font-normal text-muted">(valgfritt)</span></label>
+    <textarea
+      class:list={[inputClass, 'min-h-24 resize-y']}
+      id={`${formName}-melding`}
+      name="melding"
+      rows="3"
+      placeholder="F.eks. erstatte Excel, bedre oppfølging, enklere pipeline..."
+    ></textarea>
+  </div>
+
+  <p class="hidden text-sm text-red-700" data-form-error>
+    Noe gikk galt. Prøv igjen, eller send e-post til hans@effektdigital.no.
+  </p>
+
+  <button
+    type="submit"
+    class="inline-flex w-full justify-center rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90 disabled:opacity-60"
+  >
+    {submitLabel}
+  </button>
+</form>
+
+<script define:vars={{ formName, postPath, successPath }}>
+  const form = document.querySelector(`form.dult-demo-form[name="${formName}"]`);
+  const errorEl = form?.querySelector('[data-form-error]');
+  const submitBtn = form?.querySelector('button[type="submit"]');
+
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    errorEl?.classList.add('hidden');
+    submitBtn?.setAttribute('disabled', 'true');
+
+    try {
+      const body = new URLSearchParams(new FormData(form)).toString();
+      await fetch(postPath, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body,
+      });
+      window.location.href = successPath;
+    } catch {
+      errorEl?.classList.remove('hidden');
+      submitBtn?.removeAttribute('disabled');
+    }
+  });
+</script>

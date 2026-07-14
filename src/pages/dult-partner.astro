@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { absoluteUrl } from '../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = 'Dult-partner – Effekt Digital';
+const description =
+  'Effekt Digital er strategisk partner og investor i Dult — et norsk salgsverktøy for B2B-team som vil ha en enkel og moderne CRM-opplevelse.';
+const url = absoluteUrl('/dult-partner/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+const features = [
+  {
+    title: 'Rask oppstart',
+    text: 'Digital omvisning og Dultskolen guider deg gjennom onboarding. De fleste er oppe og står i løpet av minutter — ikke uker.',
+  },
+  {
+    title: 'Proff-integrasjon',
+    text: 'Hent kundedata direkte fra Brønnøysundregisteret. Importer lister fra andre systemer, eller koble til kanaler som Meta for lead-innhenting.',
+  },
+  {
+    title: 'Dammen og trakta',
+    text: 'Nye prospekter samles i Dammen og flyttes gjennom salgstrakta. Hvert steg har læringspunkter du tilpasser etter hvert som du lærer.',
+  },
+  {
+    title: 'Dulter og oppfølging',
+    text: 'Notater, oppgaver og «dulter» holder hver kundecase levende. Selgerne får struktur uten at CRM blir et rapporteringsverktøy.',
+  },
+];
+
+const partnerPoints = [
+  'Strategisk partner og liten investor i Dult',
+  'Styremedlem — tett på produktutvikling og retning',
+  'Hjelp med demo, oppsett og tilpasning til salgsprosessen deres',
+  'Systemagnostisk rådgivning — Dult er ett av flere verktøy vi anbefaler når det passer',
+];
+---
+<BaseLayout {title} {description} {schema}>
+  <main>
+    <section class="grid gap-12 lg:grid-cols-[1fr_0.9fr] lg:items-end">
+      <div>
+        <p class="mb-6 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+          Strategisk partner
+        </p>
+        <h1 class="max-w-3xl text-6xl font-semibold leading-[0.94] tracking-[-0.075em] sm:text-7xl">
+          Dult — salgsverktøy laget for norske selgere.
+        </h1>
+        <p class="mt-8 max-w-2xl text-xl leading-relaxed text-muted">
+          Etter å ha testet Dult over tid valgte jeg å bli strategisk partner og investor. I dag sitter
+          jeg også som styremedlem. Ja, jeg er partisk — men det er fordi systemet faktisk løser
+          problemer jeg ser hos B2B-salgsteam hver uke.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/demo-dult.io/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white transition hover:bg-ink/90">
+            Bestill demo
+          </a>
+          <a
+            href="https://www.dult.io/partnere/hans-haugan"
+            class="rounded-full border border-line px-6 py-4 text-sm font-semibold transition hover:border-accent"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Se profil på dult.io
+          </a>
+        </div>
+      </div>
+      <aside class="rounded-[2rem] border border-line bg-white p-7">
+        <p class="text-sm font-semibold uppercase tracking-wider text-accent">Som partner hjelper jeg med</p>
+        <ul class="mt-5 space-y-4 text-muted">
+          {partnerPoints.map((point) => (
+            <li>• {point}</li>
+          ))}
+        </ul>
+      </aside>
+    </section>
+
+    <section class="mt-28">
+      <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Hvorfor Dult</p>
+      <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">Enkelt CRM som selgerne faktisk bruker.</h2>
+      <p class="mb-10 max-w-2xl text-muted">
+        Mange B2B-bedrifter trenger ikke et komplekst all-in-one-system. De trenger oversikt,
+        disiplin og et verktøy som er raskt å ta i bruk. Det er der Dult treffer — spesielt for
+        team som vil komme i gang uten lang implementering.
+      </p>
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          features.map(({ title: featureTitle, text }) => (
+            <article class="rounded-[1.75rem] border border-line bg-white p-7">
+              <h3 class="text-xl font-semibold tracking-[-0.02em]">{featureTitle}</h3>
+              <p class="mt-3 text-muted">{text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] border border-line bg-white p-8 lg:p-12">
+      <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+        <div>
+          <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Passer for deg som</p>
+          <h2 class="text-4xl font-semibold tracking-[-0.04em]">Vil ha fart — ikke et nytt IT-prosjekt.</h2>
+          <p class="mt-4 text-muted">
+            Dult passer godt for vekstorienterte B2B-bedrifter som vil ha et moderne salgsverktøy
+            uten HubSpot-kompleksitet. Team som selger med telefon, møter og oppfølging — og som
+            trenger pipeline de stoler på.
+          </p>
+        </div>
+        <ul class="grid gap-3 text-muted">
+          <li>• Salgsteam på 1–25 selgere</li>
+          <li>• Bytter fra Excel, usystematisk oppfølging eller et CRM teamet ikke bruker</li>
+          <li>• Trenger norsk støtte og rask onboarding</li>
+          <li>• Vil ha partnerhjelp med oppsett og salgsprosess — ikke bare lisens</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
+      <div class="grid items-center gap-8 lg:grid-cols-[1fr_auto]">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-[-0.03em] sm:text-4xl">
+            Klar for å se Dult i praksis?
+          </h2>
+          <p class="mt-4 max-w-lg text-white/60">
+            Book en uforpliktende demo. Vi går gjennom systemet og vurderer om Dult er riktig valg
+            for salgsprosessen deres.
+          </p>
+        </div>
+        <a
+          href="/demo-dult.io/"
+          class="inline-flex shrink-0 rounded-full bg-white px-6 py-3.5 text-sm font-semibold text-ink transition hover:bg-white/90"
+        >
+          Bestill demo →
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

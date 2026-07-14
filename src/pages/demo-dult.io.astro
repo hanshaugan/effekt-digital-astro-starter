@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import DultDemoForm from '../components/DultDemoForm.astro';
+import LandingFormLayout from '../components/LandingFormLayout.astro';
+import VideoEmbed from '../components/VideoEmbed.astro';
+import { absoluteUrl } from '../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = 'Bestill demo av Dult – Effekt Digital';
+const description =
+  'Dult er et norsk salgsverktøy laget for selgere. Bestill en uforpliktende demo — oppe og står på minutter.';
+const url = absoluteUrl('/demo-dult.io/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+const bullets = [
+  'Oppe og står på minutter — digital omvisning og Dultskolen guider deg gjennom onboarding',
+  'Proff-integrasjon gjør det enkelt å legge inn nye kunder fra Brønnøysundregisteret',
+  'Dammen og salgstrakta gir oversikt fra første kontakt til vunnet avtale',
+  'Oppfølginger og «dulter» holder salget i gang uten unødvendig administrasjon',
+];
+---
+<BaseLayout {title} {description} {schema}>
+  <LandingFormLayout
+    badge="Dult.io"
+    title="Salgsverktøy av og for selgere."
+    intro="Dult er et norsk CRM-alternativ for B2B-team som vil ha en enkel, moderne salgsplattform — uten måneder med implementering."
+    bullets={bullets}
+  >
+    <VideoEmbed
+      slot="media"
+      src="https://video.effektdigital.no/hvorfor-svikter-80-av-alle-crm-1"
+      title="Hvorfor svikter 80% av alle CRM-investeringer?"
+      caption="Webinar om CRM-investeringer — hvordan Dult tenker annerledes."
+    />
+    <DultDemoForm />
+  </LandingFormLayout>
+</BaseLayout>

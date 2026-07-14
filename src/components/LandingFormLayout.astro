@@ -1,0 +1,33 @@
+---
+interface Props {
+  badge: string;
+  title: string;
+  intro: string;
+  bullets?: string[];
+}
+
+const { badge, title, intro, bullets = [] } = Astro.props;
+---
+
+<main class="grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+  <section>
+    <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+      {badge}
+    </p>
+    <h1 class="text-6xl font-semibold leading-[0.94] tracking-[-0.075em] sm:text-7xl">{title}</h1>
+    <p class="mt-8 max-w-2xl text-xl leading-relaxed text-muted">{intro}</p>
+    {
+      bullets.length > 0 && (
+        <ul class="mt-10 grid gap-3 text-lg text-muted">
+          {bullets.map((item) => (
+            <li>• {item}</li>
+          ))}
+        </ul>
+      )
+    }
+    <slot name="media" />
+  </section>
+  <aside class="rounded-[2rem] border border-line bg-white p-7 lg:sticky lg:top-8">
+    <slot />
+  </aside>
+</main>
