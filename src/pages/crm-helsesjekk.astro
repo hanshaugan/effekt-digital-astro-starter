@@ -1,18 +1,18 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import CrmHelsesjekkForm from '../../components/CrmHelsesjekkForm.astro';
-import { absoluteUrl } from '../../lib/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CrmHelsesjekkForm from '../components/CrmHelsesjekkForm.astro';
+import { absoluteUrl } from '../lib/site';
 import {
   organizationSchema,
   schemaGraph,
   webPageSchema,
   websiteSchema,
-} from '../../lib/schema';
+} from '../lib/schema';
 
 const title = 'CRM-helsesjekk – Effekt Digital';
 const description =
   'Gratis vurdering av CRM og salgsprosess: datakvalitet, oppfølging, pipeline, adopsjon og automasjon for B2B-bedrifter.';
-const url = absoluteUrl('/landingssider/crm-helsesjekk/');
+const url = absoluteUrl('/crm-helsesjekk/');
 const schema = schemaGraph(
   organizationSchema(),
   websiteSchema(),

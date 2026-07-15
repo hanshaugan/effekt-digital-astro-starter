@@ -1,19 +1,19 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import VekstPilotWheel from '../../components/VekstPilotWheel.astro';
-import VekstPilotBookModal from '../../components/VekstPilotBookModal.astro';
-import { absoluteUrl } from '../../lib/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VekstPilotWheel from '../components/VekstPilotWheel.astro';
+import VekstPilotBookModal from '../components/VekstPilotBookModal.astro';
+import { absoluteUrl } from '../lib/site';
 import {
   organizationSchema,
   schemaGraph,
   webPageSchema,
   websiteSchema,
-} from '../../lib/schema';
+} from '../lib/schema';
 
 const title = 'VekstPilot – Effekt Digital';
 const description =
   'VekstPilot er Effekt Digitals metode for å bygge en komplett salgsmotor — fra teknologi og kultur til nettsider, innhold og salgsaktiviteter som konverterer.';
-const url = absoluteUrl('/landingssider/vekstpilot/');
+const url = absoluteUrl('/vekstpilot/');
 const schema = schemaGraph(
   organizationSchema(),
   websiteSchema(),

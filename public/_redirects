@@ -6,9 +6,13 @@
 /demo-dult.io/  /demo-dult/  301
 /demo-dult.io   /demo-dult/  301
 
+# Flyttet faste landingssider til rot-URL
+/landingssider/vekstpilot/       /vekstpilot/       301
+/landingssider/crm-helsesjekk/   /crm-helsesjekk/   301
+
 # Gamle HubSpot-tjenestesider
-/tjenester/inbound-salg/        /landingssider/vekstpilot/  301
-/tjenester/inbound-marketing/   /landingssider/vekstpilot/  301
+/tjenester/inbound-salg/        /vekstpilot/  301
+/tjenester/inbound-marketing/   /vekstpilot/  301
 /tjenester/hubspot/             /tjenester/  301
 
 # Gammel personvernside
