@@ -2,6 +2,10 @@
 /blog/*  /blogg/:splat  301
 /kontakt/takk/  /takk/  301
 
+# Om oss → Om Hans
+/om-oss/  /om-hans/  301
+/om-oss   /om-hans/  301
+
 # Gammel Dult demo-URL (HubSpot)
 /demo-dult.io/  /demo-dult/  301
 /demo-dult.io   /demo-dult/  301

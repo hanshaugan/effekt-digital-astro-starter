@@ -1,0 +1,234 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import { SITE, absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const title = 'Om Hans – Effekt Digital';
+const description =
+  'Hans Haugan hjelper B2B-bedrifter å bygge salgsmotorer som fungerer – gjennom innhold, teknologi, prosesser og kultur.';
+const url = absoluteUrl('/om-hans/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+const wistiaMediaId = 'pkamtnra6g';
+
+const principles = [
+  {
+    title: 'Jeg blir en del av teamet ditt',
+    text: 'Målet er at dere skal eie prosess og verktøy over tid. Jeg bygger sammen med dere, med opplæring og støtte underveis.',
+  },
+  {
+    title: 'Strategi før taktikk',
+    text: 'Jeg starter med målgruppe, salgsprosess og flaskehalser. Deretter velger vi teknologi og arbeidsflyt som faktisk støtter hvordan dere selger.',
+  },
+  {
+    title: 'Support og opplæring',
+    text: 'Workshops, 1-til-1 og praktisk trening i CRM og salgsrutiner. Løsningen skal fungere i hverdagen, ikke bare i en presentasjon.',
+  },
+  {
+    title: 'Jeg skal forstå businessen din',
+    text: 'Bransje, konkurransesituasjon og vekstambisjoner påvirker hva som gir mening. Jeg tar meg tid til å forstå konteksten før jeg anbefaler tiltak.',
+  },
+];
+
+const partners = [
+  ['HubSpot', 'CRM, marketing automation og salgsverktøy for vekstbedrifter.', 'https://www.hubspot.com'],
+  ['Pipedrive', 'CRM med fokus på pipeline, aktiviteter og enkelhet for salgsteam.', 'https://www.pipedrive.com'],
+  ['Dult', 'Norsk CRM-alternativ for team som vil ha en enkel og moderne salgsplattform.', 'https://dult.io'],
+  ['TwentyThree', 'Video- og webinarplattform for profesjonell videomarkedsføring og leadgenerering.', 'https://www.twentythree.com'],
+  ['ProspectFinder', 'AI-drevet prospektering og lead-kvalifisering for B2B-salg.', 'https://prospectfinder.ai'],
+];
+---
+
+<BaseLayout {title} {description} {schema}>
+  <main>
+    <section class="grid items-end gap-10 lg:grid-cols-[0.95fr_1.15fr] lg:gap-12">
+      <div>
+        <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+          Om Hans
+        </p>
+        <h1 class="text-5xl font-semibold leading-[0.96] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
+          Hei, Hans her.
+        </h1>
+        <p class="mt-6 max-w-xl text-xl leading-relaxed text-muted sm:text-2xl">
+          Jeg elsker salg, og hjelper B2B-bedrifter med å bygge salgsmotorer som faktisk fungerer.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/kontakt/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+            Book en prat
+          </a>
+          {
+            SITE.calendlyUrl && (
+              <a
+                href={SITE.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="rounded-full border border-line px-6 py-4 text-sm font-semibold"
+              >
+                Book i kalenderen
+              </a>
+            )
+          }
+        </div>
+      </div>
+      <aside class="w-full overflow-hidden rounded-[2rem] border border-line bg-ink shadow-2xl shadow-stone-900/5">
+        <script is:inline src="https://fast.wistia.com/player.js" async></script>
+        <script is:inline src={`https://fast.wistia.com/embed/${wistiaMediaId}.js`} type="module" async></script>
+        <style is:inline set:html={`wistia-player[media-id='${wistiaMediaId}']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/${wistiaMediaId}/swatch'); display: block; filter: blur(5px); padding-top: 56.25%; }`} />
+        <wistia-player media-id={wistiaMediaId} aspect="1.7777777777777777"></wistia-player>
+      </aside>
+    </section>
+
+    <section class="mt-28 max-w-3xl">
+      <div class="space-y-6 text-lg leading-relaxed text-muted sm:text-xl">
+        <p>
+          Etter å ha jobbet med operativt salg i over 25 år vet jeg at noe alltid vil være det samme,
+          samtidig som vi lever i en verden som endrer seg vanvittig fort. Digitalisering og ny
+          teknologi åpner opp for uante muligheter, men også for mange fallgruver. Bedrifter og ledere
+          som ikke følger med blir akterutseilt og spist opp av konkurrentene.
+        </p>
+        <p>
+          I dag hjelper jeg B2B-bedrifter å bygge salgsmotorer som faktisk fungerer – gjennom innhold,
+          teknologi og prosesser. Rådgivning og operativ hjelp, ikke bare strategi.
+        </p>
+      </div>
+    </section>
+
+    <section class="mt-20 rounded-[2rem] border border-line bg-white p-8 lg:p-12">
+      <h2 class="text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">
+        Litt som i toppidrett.
+      </h2>
+      <div class="mt-8 space-y-6 text-lg leading-relaxed text-muted">
+        <p>
+          Jeg har erfart at selgere med genuin interesse for faget, riktige holdninger, evne til å lytte
+          og forstå kundens behov – og som vet at de må trene, øve og ta ansvar for egen læring – alltid
+          vil holde seg på topp og levere. Uansett.
+        </p>
+        <p>
+          Samtidig vet jeg at hvis bedrifter ikke legger til rette for at selgerne kan blomstre, så
+          forsvinner de ut av døra før du vet ordet av det. Gode selgere er ettertraktede, og de venter
+          ikke på ledere som er låst til gamle salgsdogmer og tror at masing og press alene lukker
+          avtaler.
+        </p>
+        <p>
+          Derfor elsker jeg å jobbe med bedrifter og ledere som har ambisjoner, som forstår at endringer
+          er uunngåelige og som er villige til å investere for å bli best. Som forstår at AI, teknologi
+          og nye løsninger ikke er noe man kan overse hvis man vil henge med fremover.
+        </p>
+      </div>
+    </section>
+
+    <section class="mt-28">
+      <SectionHeading
+        eyebrow="Hvordan jeg jobber"
+        title="Dine utfordringer er min motivasjon."
+        text="Jeg kombinerer salgsforståelse med praktisk implementering. Ikke store strategidokumenter, men arbeidsflyt som selgerne faktisk bruker."
+      />
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          principles.map(({ title, text }) => (
+            <article class="rounded-[1.75rem] border border-line bg-white p-7">
+              <h2 class="text-2xl font-semibold tracking-[-0.04em]">{title}</h2>
+              <p class="mt-4 text-muted">{text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
+      <h2 class="max-w-2xl text-4xl font-semibold tracking-[-0.05em]">
+        Moderne salgsprosesser betyr ikke enda flere verktøy.
+      </h2>
+      <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/65">
+        Mange bedrifter har CRM, men mangler struktur, oppfølging og adopsjon. Jeg hjelper med å koble
+        sammen teknologi, innhold, salgsaktiviteter og kultur — med VekstPilot som rammeverk når det
+        passer.
+      </p>
+    </section>
+
+    <section class="mt-28">
+      <SectionHeading
+        eyebrow="Partnere"
+        title="Verktøy jeg jobber med."
+        text="Jeg er ikke bundet til én plattform. Her er noen av dem jeg oftest anbefaler og implementerer."
+      />
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {
+          partners.map(([name, text, href]) => (
+            <article class="rounded-[1.75rem] bg-sand p-7">
+              <h2 class="text-2xl font-semibold tracking-[-0.04em]">
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="transition hover:text-accent"
+                >
+                  {name}
+                </a>
+              </h2>
+              <p class="mt-3 text-muted">{text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] border border-line bg-white p-8 lg:p-12">
+      <div class="grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <h2 class="text-4xl font-semibold tracking-[-0.05em]">Hvis noe av dette resonerer</h2>
+          <p class="mt-4 max-w-xl text-lg text-muted">
+            Da tar jeg gjerne en uforpliktende prat — om bedriften, salgsprosessen og hva dere ønsker å
+            få til.
+          </p>
+          <div class="mt-8 flex flex-col gap-3 text-muted sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-6 sm:gap-y-3">
+            <a class="font-semibold text-ink hover:text-accent" href={`tel:${SITE.phone.replace(/\s/g, '')}`}>
+              {SITE.phone}
+            </a>
+            <a class="font-semibold text-ink hover:text-accent" href={`mailto:${SITE.email}`}>
+              {SITE.email}
+            </a>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/kontakt/" class="inline-flex rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+              Kontakt Hans
+            </a>
+            {
+              SITE.calendlyUrl && (
+                <a
+                  href={SITE.calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex rounded-full border border-line px-6 py-4 text-sm font-semibold"
+                >
+                  Book møte i kalenderen
+                </a>
+              )
+            }
+          </div>
+        </div>
+        <div class="overflow-hidden rounded-[1.75rem] bg-ink">
+          <img
+            src="/images/hans-haugan-cta.png"
+            alt="Hans Haugan, Effekt Digital"
+            class="aspect-[4/5] w-full object-cover object-top"
+            width="800"
+            height="1000"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

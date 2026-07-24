@@ -5,6 +5,10 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.effektdigital.no',
+  redirects: {
+    '/om-oss': '/om-hans',
+    '/om-oss/': '/om-hans/',
+  },
   integrations: [
     mdx({
       components: {
