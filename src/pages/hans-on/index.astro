@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BeehiivSubscribeForm from '../../components/BeehiivSubscribeForm.astro';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const title = 'Hans-On – Sales enablement-nyhetsbrev | Effekt Digital';
+const description =
+  'Hans-On er nyhetsbrevet for B2B-folk som vil ha mer fart i salget: innhold, teknologi, prosesser og kultur — praktisk, ikke fluff.';
+const url = absoluteUrl('/hans-on/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+const bullets = [
+  'Konkrete grep innen sales- og buyer enablement',
+  'Innhold, teknologi og prosesser som faktisk brukes',
+  'Kultur og adopsjon — fordi folk avgjør om systemet lever',
+  'Korte, praktiske utgaver du rekker å lese',
+];
+---
+
+<BaseLayout {title} {description} {schema}>
+  <main class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+    <section>
+      <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+        Nyhetsbrev
+      </p>
+      <h1 class="text-6xl font-semibold leading-[0.94] tracking-[-0.075em] sm:text-7xl">
+        Hans-On
+      </h1>
+      <p class="mt-3 text-xl font-medium tracking-[-0.02em] text-ink sm:text-2xl">
+        Sales enablement for B2B — hands-on, ikke hype.
+      </p>
+      <p class="mt-8 max-w-2xl text-xl leading-relaxed text-muted">
+        Et personlig nyhetsbrev fra Hans i Effekt Digital. For deg som jobber med salg, vekst og
+        arbeidsflyt — og som vil ha mer handling enn preik.
+      </p>
+      <ul class="mt-10 grid gap-3 text-lg text-muted">
+        {bullets.map((item) => <li>• {item}</li>)}
+      </ul>
+      <p class="mt-10 max-w-xl text-sm text-muted">
+        Passer godt hvis du følger VekstPilot, jobber med CRM/sales-tech, eller bare vil ha en
+        jevnlig dose praktisk enablement.
+      </p>
+    </section>
+
+    <aside class="rounded-[2rem] border border-line bg-white p-7 shadow-2xl shadow-stone-900/5 lg:sticky lg:top-8 lg:p-8">
+      <BeehiivSubscribeForm />
+    </aside>
+  </main>
+</BaseLayout>

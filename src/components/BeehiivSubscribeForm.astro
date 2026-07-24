@@ -1,0 +1,38 @@
+---
+interface Props {
+  /** Beehiiv form ID fra subscribe-forms embed */
+  formId?: string;
+  title?: string;
+  text?: string;
+}
+
+const {
+  formId = '8363f303-84c9-4840-9e2d-1f3a4d540a7e',
+  title = 'Meld deg på Hans-On',
+  text = 'Få praktiske tanker om sales enablement, innhold, teknologi og prosesser — rett i innboksen.',
+} = Astro.props;
+---
+
+<div class="beehiiv-subscribe">
+  <h2 class="text-2xl font-semibold tracking-[-0.04em]">{title}</h2>
+  <p class="mt-3 text-muted">{text}</p>
+  <div class="beehiiv-subscribe__form mt-6 min-h-[12rem]">
+    <script
+      is:inline
+      async
+      src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+      data-beehiiv-form={formId}
+    ></script>
+  </div>
+  <p class="mt-4 text-xs leading-relaxed text-muted">
+    Du kan melde deg av når som helst. Vi spammer ikke — bare nyttig innhold.
+  </p>
+</div>
+
+<style>
+  .beehiiv-subscribe__form :global(iframe),
+  .beehiiv-subscribe__form :global([data-beehiiv-form]),
+  .beehiiv-subscribe__form :global(div) {
+    max-width: 100%;
+  }
+</style>

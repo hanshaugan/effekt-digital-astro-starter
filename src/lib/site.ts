@@ -3,7 +3,7 @@ export const SITE = {
   legalName: 'Effekt Digital AS',
   orgNumber: '916 282 818',
   url: 'https://www.effektdigital.no',
-  defaultTitle: 'Effekt Digital – CRM, AI og moderne salgsprosesser',
+  defaultTitle: 'Effekt Digital – Sales enablement for B2B | Innhold, teknologi og prosesser',
   defaultDescription:
     'CRM, AI og sales-tech for B2B-selskaper som vil ha bedre salgsflyt.',
   locale: 'nb_NO',
