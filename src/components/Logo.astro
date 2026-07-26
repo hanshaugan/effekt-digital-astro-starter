@@ -1,0 +1,41 @@
+---
+interface Props {
+  class?: string;
+  /** Skjul ordmerke (kun ikon) */
+  markOnly?: boolean;
+  /**
+   * accent = merkevaregrønn (fungerer på lys og mørk flate)
+   * inverse = lys/sand-prikker (til bruk på sterkt farget/mørk flate når grønn ikke er ønsket)
+   * current = arver currentColor
+   */
+  tone?: 'accent' | 'inverse' | 'current';
+}
+
+const { class: className, markOnly = false, tone = 'accent' } = Astro.props;
+
+const fill =
+  tone === 'accent' ? '#1f5f54' : tone === 'inverse' ? '#f7f5f0' : 'currentColor';
+---
+
+<span class:list={['inline-flex items-center gap-2.5 text-ink', className]}>
+  <svg
+    class="h-7 w-7 shrink-0 sm:h-8 sm:w-8"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <circle cx="3.2" cy="23.2" r="2.35" fill={fill}></circle>
+    <circle cx="9.2" cy="18.4" r="2.55" fill={fill}></circle>
+    <circle cx="15.5" cy="13.4" r="2.75" fill={fill}></circle>
+    <circle cx="22.2" cy="8.6" r="2.95" fill={fill}></circle>
+    <circle cx="28.6" cy="3.8" r="3.1" fill={fill}></circle>
+  </svg>
+  {
+    !markOnly && (
+      <span class="font-logo text-[1.35rem] font-semibold leading-none tracking-[-0.045em] sm:text-[1.5rem]">
+        Effekt Digital
+      </span>
+    )
+  }
+</span>

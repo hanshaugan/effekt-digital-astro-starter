@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 64" fill="none" role="img" aria-label="Effekt Digital">
+  <g transform="translate(0 8)">
+    <circle cx="6.4" cy="46.4" r="4.7" fill="#1f5f54"/>
+    <circle cx="18.4" cy="36.8" r="5.1" fill="#1f5f54"/>
+    <circle cx="31" cy="26.8" r="5.5" fill="#1f5f54"/>
+    <circle cx="44.4" cy="17.2" r="5.9" fill="#1f5f54"/>
+    <circle cx="57.2" cy="7.6" r="6.2" fill="#1f5f54"/>
+  </g>
+  <text
+    x="78"
+    y="42"
+    fill="#151515"
+    font-family="Outfit, Arial, sans-serif"
+    font-size="28"
+    font-weight="600"
+    letter-spacing="-0.04em"
+  >Effekt Digital</text>
+</svg>

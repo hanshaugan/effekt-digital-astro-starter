@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "brand:export": "node scripts/export-brand-assets.mjs",
     "migrate:blog": "node --env-file=.env scripts/migrate-hubspot-blog.mjs",
     "migrate:blog:dry": "node --env-file=.env scripts/migrate-hubspot-blog.mjs --dry-run --limit 5"
   },
@@ -22,6 +23,7 @@
     "vite": "^7"
   },
   "devDependencies": {
+    "sharp": "^0.35.3",
     "turndown": "^7.2.4"
   }
 }
