@@ -5,7 +5,7 @@ const links = [
   { href: '/om-hans/', label: 'Om Hans' },
   { href: '/tjenester/', label: 'Tjenester' },
   { href: '/blogg/', label: 'Blogg' },
-  { href: '/vekstpilot/', label: 'VekstPilot' },
+  { href: '/vekstpilot/', label: 'VekstPilot', badge: 'Nyhet' },
 ];
 ---
 
@@ -40,9 +40,14 @@ const links = [
     </div>
 
     <nav class="hidden items-center gap-x-7 text-sm text-muted md:flex" aria-label="Hovedmeny">
-      {links.map(({ href, label }) => (
-        <a class="hover:text-ink" href={href}>
+      {links.map(({ href, label, badge }) => (
+        <a class="inline-flex items-center gap-2 hover:text-ink" href={href}>
           {label}
+          {badge && (
+            <span class="rounded-full bg-accent-soft px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-accent">
+              {badge}
+            </span>
+          )}
         </a>
       ))}
       <a class="font-semibold text-ink" href="/kontakt/">
@@ -60,13 +65,18 @@ const links = [
   >
     <ul class="flex flex-col">
       {
-        links.map(({ href, label }) => (
+        links.map(({ href, label, badge }) => (
           <li>
             <a
-              class="block rounded-xl px-4 py-3 text-base font-medium text-ink hover:bg-sand"
+              class="flex items-center justify-between gap-3 rounded-xl px-4 py-3 text-base font-medium text-ink hover:bg-sand"
               href={href}
             >
-              {label}
+              <span>{label}</span>
+              {badge && (
+                <span class="rounded-full bg-accent-soft px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wider text-accent">
+                  {badge}
+                </span>
+              )}
             </a>
           </li>
         ))
