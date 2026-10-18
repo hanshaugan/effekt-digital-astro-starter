@@ -39,7 +39,7 @@ image: "/images/blog/ditt-innlegg/forsidebilde.jpg"
 
 ## SEO (automatisk)
 
-Følgende genereres automatisk for alle sider — du trenger ikke gjøre noe ekstra:
+Følgende genereres automatisk for alle sider – du trenger ikke gjøre noe ekstra:
 
 - `title` og `description` → meta-tagger, Open Graph og Twitter Cards
 - Canonical URL (unngår duplikat-innhold)

@@ -20,17 +20,77 @@ const schema = schemaGraph(
 );
 
 const wistiaMediaId = 'zk9cn4noxo';
+
+const problems = [
+  [
+    'Lite synlighet',
+    'Kompetansen finnes, men potensielle kunder ser den ikke – og salgsmulighetene blir færre.',
+  ],
+  [
+    'Få kvalifiserte salgsmuligheter',
+    'Pipeline fylles tilfeldig, eller ikke i det hele tatt. Dere mangler en systematisk vei til relevante møter.',
+  ],
+  [
+    'Tilfeldig prospektering og oppfølging',
+    'Kontaktsekvenser, meeting-booking og oppfølging varierer fra person til person. Gode leads faller mellom stolene.',
+  ],
+  [
+    'CRM og verktøy uten flyt',
+    'Systemet brukes til rapportering, ikke til salgsarbeid. For mange verktøy, for lite sammenheng.',
+  ],
+];
+
+const entrances = [
+  {
+    href: 'https://videoklar.no',
+    external: true,
+    badge: 'VideoKlar',
+    title: 'Video som skaper salgsmuligheter',
+    text: 'Lederprofilering, kundereferanser, webinarer og salgsvideo – for B2B som vil bygge tillit raskere.',
+    cta: 'Besøk videoklar.no →',
+    featured: false,
+  },
+  {
+    href: '/vekstpilot/',
+    external: false,
+    badge: 'VekstPilot',
+    title: 'Flere salgsmuligheter. En mer systematisk salgsprosess.',
+    text: 'Helhetlig modell for synlighet, prospektering, salgsaktiviteter, salgsprosess og CRM – der dere trenger det.',
+    cta: 'Se VekstPilot →',
+    featured: true,
+  },
+  {
+    href: '/crm-helsesjekk/',
+    external: false,
+    badge: 'CRM & Sales Tech',
+    title: 'Teknologi som gjør salgsarbeidet enklere',
+    text: 'CRM-rådgivning, implementering, systemrydding, AI og adopsjon – pris etter avtale.',
+    cta: 'Start med CRM-helsesjekk →',
+    featured: false,
+  },
+];
 ---
 <BaseLayout {title} {description} {schema}>
   <main>
     <section class="grid items-start gap-10 lg:grid-cols-[0.92fr_1.18fr] lg:items-end lg:gap-12">
       <div class="max-w-xl lg:max-w-none">
-        <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">Sales- &amp; buyer enablement</p>
-        <h1 class="text-5xl font-semibold leading-[0.96] tracking-[-0.075em] sm:text-6xl lg:text-7xl">Salg skjer ikke av seg selv.</h1>
-        <p class="mt-6 max-w-xl text-xl leading-relaxed text-muted sm:text-2xl">Jeg hjelper B2B-bedrifter med å bygge salgsprosesser gjennom innhold, teknologi og aktiviteter som faktisk fungerer. Mindre preik, mer handling!</p>
+        <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+          B2B · Salg · Innhold · Teknologi
+        </p>
+        <h1 class="text-5xl font-semibold leading-[0.96] tracking-[-0.075em] sm:text-6xl lg:text-7xl">
+          Fra synlighet til salg.
+        </h1>
+        <p class="mt-6 max-w-xl text-xl leading-relaxed text-muted sm:text-2xl">
+          Jeg hjelper B2B-bedrifter med å skape flere salgsmuligheter og gjøre dem om til kunder. Med riktig
+          innhold, målrettede salgsaktiviteter og teknologi som faktisk fungerer.
+        </p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/kontakt/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">Book en rådgivningsprat</a>
-          <a href="/tjenester/" class="rounded-full border border-line px-6 py-4 text-sm font-semibold">Se hvordan vi jobber</a>
+          <a href="/kontakt/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+            Book en rådgivningsprat
+          </a>
+          <a href="/tjenester/" class="rounded-full border border-line px-6 py-4 text-sm font-semibold">
+            Se hvordan jeg jobber
+          </a>
         </div>
       </div>
       <aside class="w-full overflow-hidden rounded-[2rem] border border-line bg-ink shadow-2xl shadow-stone-900/5">
@@ -42,31 +102,104 @@ const wistiaMediaId = 'zk9cn4noxo';
     </section>
 
     <section class="mt-28">
-      <SectionHeading title="Teknologi alene løser ikke problemet." text="Mange selskaper har investert i teknologi, CRM og automatisering, men opplever fortsatt dårlig datakvalitet, tilfeldig oppfølging og lav adopsjon. Da er problemet sjelden bare teknologien. Vel så viktig er innholdet, aktivitetene og arbeidsflyten rundt." />
-      <div class="grid gap-4 md:grid-cols-3">
-        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">Selgerne bruker ikke CRM</h3><p class="mt-4 text-muted">Systemet blir et rapporteringsverktøy for ledelsen, ikke et arbeidsverktøy for salgsteamet.</p></article>
-        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">Oppfølging skjer tilfeldig</h3><p class="mt-4 text-muted">Leads, møter, tilbud og aktiviteter faller mellom alle stoler fordi prosessen ikke er tydelig nok.</p></article>
-        <article class="rounded-[1.75rem] border border-line bg-white p-7"><h3 class="text-2xl font-semibold tracking-[-0.04em]">For mange verktøy, for lite flyt</h3><p class="mt-4 text-muted">Marked, salg og økonomi sitter ofte på hver sin øy. Det skaper friksjon fra lead til kunde.</p></article>
+      <SectionHeading
+        title="Teknologi alene løser ikke problemet."
+        text="Mange B2B-selskaper sliter med lav synlighet, få kvalifiserte salgsmuligheter og tilfeldig prospektering og oppfølging – i tillegg til CRM-adopsjon, for mange verktøy og dårlig arbeidsflyt."
+      />
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          problems.map(([title, text]) => (
+            <article class="rounded-[1.75rem] border border-line bg-white p-7">
+              <h3 class="text-xl font-semibold tracking-[-0.04em] sm:text-2xl">{title}</h3>
+              <p class="mt-4 text-muted">{text}</p>
+            </article>
+          ))
+        }
       </div>
+    </section>
 
-      <aside class="mt-16 rounded-[2rem] border border-line bg-sand-2 px-8 py-10 lg:mt-20 lg:px-12 lg:py-12">
-        <p class="text-sm font-semibold uppercase tracking-[0.18em] text-accent">VekstPilot</p>
-        <p class="mt-5 max-w-3xl text-xl leading-relaxed text-ink sm:text-2xl sm:leading-relaxed">
-          De fleste problemer i salg handler ikke om én ting. De handler om at teknologi, innhold, salgsaktiviteter, nettsider og prestasjonskultur ikke snakker sammen. VekstPilot er min metode for å kartlegge akkurat det – og bygge systemet som får alle delene til å virke.
-        </p>
-        <a
-          href="/vekstpilot/"
-          class="mt-8 inline-flex text-sm font-semibold text-ink underline decoration-line underline-offset-4 transition hover:text-accent hover:decoration-accent"
-        >
-          Se VekstPilot →
-        </a>
-      </aside>
+    <section class="mt-28">
+      <SectionHeading
+        eyebrow="Tre innganger"
+        title="Velg etter problemet dere har."
+        text="VideoKlar for synlighet og tillit. VekstPilot for flere salgsmuligheter. CRM og Sales Tech når systemet og oppfølgingen må på plass."
+      />
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          entrances.map((item) => (
+            <a
+              href={item.href}
+              target={item.external ? '_blank' : undefined}
+              rel={item.external ? 'noopener noreferrer' : undefined}
+              class:list={[
+                'group flex flex-col rounded-[1.75rem] border border-line p-7 transition hover:border-accent',
+                item.featured ? 'bg-ink text-white' : 'bg-white',
+              ]}
+            >
+              <p
+                class:list={[
+                  'text-xs font-semibold uppercase tracking-wider',
+                  item.featured ? 'text-accent-soft' : 'text-accent',
+                ]}
+              >
+                {item.badge}
+              </p>
+              <h3 class="mt-2 text-2xl font-semibold tracking-[-0.04em]">{item.title}</h3>
+              <p class:list={['mt-4 flex-1 text-sm leading-relaxed', item.featured ? 'text-white/60' : 'text-muted']}>
+                {item.text}
+              </p>
+              <span
+                class:list={[
+                  'mt-6 inline-block text-sm font-semibold',
+                  item.featured ? 'text-accent-soft' : 'text-accent',
+                ]}
+              >
+                {item.cta}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] border border-line bg-sand-2 px-8 py-10 lg:px-12 lg:py-12">
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-accent">VideoKlar</p>
+      <h2 class="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+        VideoKlar – video som skaper salgsmuligheter.
+      </h2>
+      <p class="mt-5 max-w-3xl text-lg leading-relaxed text-muted">
+        Gjør kompetansen din synlig og bygg tillit hos potensielle kunder. Med VideoKlar hjelper jeg B2B-bedrifter
+        med lederprofilering, kundereferanser, webinarer, produktdemoer og personlige salgsvideoer. Du bidrar med
+        kunnskapen. Jeg hjelper med strategi, produksjon og gjennomføring.
+      </p>
+      <a
+        href="https://videoklar.no"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-8 inline-flex text-sm font-semibold text-ink underline decoration-line underline-offset-4 transition hover:text-accent hover:decoration-accent"
+      >
+        Gå til videoklar.no →
+      </a>
+    </section>
+
+    <section class="mt-28 text-center">
+      <p class="mx-auto max-w-4xl text-4xl font-semibold leading-none tracking-[-0.06em] sm:text-5xl lg:text-6xl">
+        Salg skjer ikke av seg selv.
+      </p>
+      <p class="mx-auto mt-5 max-w-2xl text-lg text-muted">
+        Mindre preik, mer handling – strategi, innhold, salgsaktiviteter og teknologi som henger sammen.
+      </p>
     </section>
 
     <section class="mt-28 rounded-[2.25rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
       <div class="mx-auto max-w-3xl">
-        <h2 class="text-3xl font-semibold leading-none tracking-[-0.06em] sm:text-4xl lg:text-5xl">Systemuavhengig. Praktisk. Resultatorientert.</h2>
-        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">Vi anbefaler ikke verktøy fordi vi må. Vi anbefaler det som passer deres salgsprosess, team og ambisjonsnivå.</p>
+        <h2 class="text-3xl font-semibold leading-none tracking-[-0.06em] sm:text-4xl lg:text-5xl">
+          Systemuavhengig. Praktisk. Resultatorientert.
+        </h2>
+        <p class="mt-5 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">
+          Jeg anbefaler ikke verktøy fordi jeg må. Jeg anbefaler det som passer deres salgsprosess, team og
+          ambisjonsnivå.
+        </p>
         <p class="mt-8 text-sm font-medium tracking-[0.02em] text-white/45 sm:text-base">
           HubSpot · Pipedrive · Attio · + mer
         </p>
@@ -74,19 +207,34 @@ const wistiaMediaId = 'zk9cn4noxo';
     </section>
 
     <section class="mt-28">
-      <SectionHeading eyebrow="Metode" title="Vi starter med arbeidsflyten, ikke systemet." text="Først finner vi ut hvordan salg faktisk skjer. Deretter bygger vi teknologien rundt prosessen." />
+      <SectionHeading
+        eyebrow="Metode"
+        title="Vi starter med arbeidsflyten, ikke systemet."
+        text="Først finner vi ut hvordan salg faktisk skjer. Deretter bygger vi teknologien rundt prosessen."
+      />
       <div class="grid gap-4 md:grid-cols-4">
-        {[
-          ['01','Kartlegg','Dagens prosess, verktøy, data og flaskehalser.'],
-          ['02','Design','Salgsflyt, pipeline, roller, aktiviteter og styringspunkter.'],
-          ['03','Bygg','CRM, automasjoner, integrasjoner og praktiske arbeidsflater.'],
-          ['04','Forankre','Trening, justering og adopsjon i salgsteamet.']
-        ].map(([n,t,d]) => <article class="rounded-[1.6rem] bg-sand-2 p-6"><p class="font-bold text-accent">{n}</p><h3 class="mt-8 text-xl font-semibold tracking-[-0.04em]">{t}</h3><p class="mt-3 text-muted">{d}</p></article>)}
+        {
+          [
+            ['01', 'Kartlegg', 'Dagens prosess, verktøy, data og flaskehalser.'],
+            ['02', 'Design', 'Salgsflyt, pipeline, roller, aktiviteter og styringspunkter.'],
+            ['03', 'Bygg', 'CRM, automasjoner, integrasjoner og praktiske arbeidsflater.'],
+            ['04', 'Forankre', 'Trening, justering og adopsjon i salgsteamet.'],
+          ].map(([n, t, d]) => (
+            <article class="rounded-[1.6rem] bg-sand-2 p-6">
+              <p class="font-bold text-accent">{n}</p>
+              <h3 class="mt-8 text-xl font-semibold tracking-[-0.04em]">{t}</h3>
+              <p class="mt-3 text-muted">{d}</p>
+            </article>
+          ))
+        }
       </div>
     </section>
 
     <section class="my-28 text-center">
-      <p class="mx-auto max-w-5xl text-5xl font-semibold leading-none tracking-[-0.07em] sm:text-6xl lg:text-7xl">Det beste CRM-systemet er ikke det med flest funksjoner. Det er det <span class="text-accent">selgerne faktisk bruker.</span></p>
+      <p class="mx-auto max-w-5xl text-5xl font-semibold leading-none tracking-[-0.07em] sm:text-6xl lg:text-7xl">
+        Det beste CRM-systemet er ikke det med flest funksjoner. Det er det{' '}
+        <span class="text-accent">selgerne faktisk bruker.</span>
+      </p>
     </section>
 
     <TechStackSection class="mb-28" />
@@ -94,9 +242,16 @@ const wistiaMediaId = 'zk9cn4noxo';
     <section class="rounded-[2.25rem] border border-line bg-white p-8 lg:p-14">
       <div class="grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <div>
-          <h2 class="max-w-3xl text-4xl font-semibold leading-none tracking-[-0.06em] sm:text-5xl">Vil du bygge mer moderne salgsprosesser?</h2>
-          <p class="mt-5 max-w-2xl text-xl text-muted">La oss ta en uforpliktende prat om CRM, sales-tech og hvordan dere kan få bedre flyt fra lead til kunde.</p>
-          <a href="/kontakt/" class="mt-8 inline-flex rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">Kontakt Hans</a>
+          <h2 class="max-w-3xl text-4xl font-semibold leading-none tracking-[-0.06em] sm:text-5xl">
+            Vil du bygge mer moderne salgsprosesser?
+          </h2>
+          <p class="mt-5 max-w-2xl text-xl text-muted">
+            La oss ta en uforpliktende prat om synlighet, salgsmuligheter, CRM og hvordan dere kan få bedre flyt
+            fra lead til kunde.
+          </p>
+          <a href="/kontakt/" class="mt-8 inline-flex rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+            Kontakt Hans
+          </a>
         </div>
         <div class="overflow-hidden rounded-[1.75rem] bg-ink">
           <img

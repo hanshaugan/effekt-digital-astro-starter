@@ -8,7 +8,7 @@ interface Props {
 
 const {
   heading = 'Start med en CRM-helsesjekk',
-  intro = 'Fyll ut skjemaet — vi tar kontakt innen én arbeidsdag med en kort vurdering.',
+  intro = 'Fyll ut skjemaet – vi tar kontakt innen én arbeidsdag med en kort vurdering.',
   submitLabel = 'Send inn',
   successPath = '/takk/',
 } = Astro.props;
@@ -78,10 +78,10 @@ const labelClass = 'mb-1.5 block text-sm font-semibold text-ink';
     <label class={labelClass} for={`${formName}-bruk`}>Hvor aktivt bruker teamet CRM i dag?</label>
     <select class={inputClass} id={`${formName}-bruk`} name="crm-bruk" required>
       <option value="">Velg...</option>
-      <option>Daglig — det er en del av arbeidsflyten</option>
-      <option>Ukentlig — brukes, men ikke konsekvent</option>
-      <option>Sjelden — mange hopper over det</option>
-      <option>Nesten aldri — vi har det, men bruker det lite</option>
+      <option>Daglig – det er en del av arbeidsflyten</option>
+      <option>Ukentlig – brukes, men ikke konsekvent</option>
+      <option>Sjelden – mange hopper over det</option>
+      <option>Nesten aldri – vi har det, men bruker det lite</option>
     </select>
   </div>
 

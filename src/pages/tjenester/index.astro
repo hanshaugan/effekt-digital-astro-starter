@@ -9,61 +9,180 @@ import {
   websiteSchema,
 } from '../../lib/schema';
 
-const services = [
-  ['CRM-rådgivning og implementering','Valg, oppsett og forbedring av CRM basert på behov, modenhet og hvordan teamet faktisk jobber.'],
-  ['AI og automasjon i salget','Reduser manuelt arbeid med databerikelse, oppfølging, møteoppsummeringer og next-best-actions.'],
-  ['Salgsprosess og pipeline','Bygg en tydelig salgsflyt fra første kontakt til signert kunde, med bedre kontroll og mindre friksjon.'],
-  ['Lead-to-cash','Koble sammen marked, salg, CRM, tilbud, kundereise og økonomi slik at hele prosessen henger sammen.'],
-  ['Sales enablement','Gi selgerne struktur, innhold, maler og arbeidsflyt som gjør det enklere å følge opp riktig.'],
-  ['Systemrydding og adopsjon','Rydd i felter, prosesser, dashboards og rutiner slik at CRM igjen blir enkelt, nyttig og relevant.']
-];
-
 const title = 'Tjenester – Effekt Digital';
 const description =
-  'CRM-rådgivning, AI i salg, salgsprosess, lead-to-cash og sales enablement for B2B-selskaper.';
+  'Fra synlighet til salg: VekstPilot, VideoKlar og CRM/Sales Tech for B2B-bedrifter som vil skape flere salgsmuligheter.';
 const url = absoluteUrl('/tjenester/');
 const schema = schemaGraph(
   organizationSchema(),
   websiteSchema(),
   webPageSchema({ title, description, url }),
 );
+
+const areas = [
+  {
+    href: '/vekstpilot/',
+    external: false,
+    badge: 'VekstPilot',
+    title: 'Flere salgsmuligheter. En mer systematisk salgsprosess.',
+    text: 'Diagnose/Analyse, rådgivning, prospektering, møtebooking, salgsutvikling og gjennomføring.',
+    price: 'Diagnose fra 4 900 kr',
+    cta: 'Utforsk VekstPilot →',
+    featured: true,
+  },
+  {
+    href: 'https://videoklar.no',
+    external: true,
+    badge: 'VideoKlar',
+    title: 'Video som bygger tillit og skaper salgsmuligheter.',
+    text: 'Lederprofilering, kundereferanser, webinarer, produktdemoer, salgsvideo og opplæring.',
+    price: 'Fra 11 900 kr/mnd',
+    cta: 'Gå til videoklar.no →',
+    featured: false,
+  },
+  {
+    href: '/crm-helsesjekk/',
+    external: false,
+    badge: 'CRM og Sales Tech',
+    title: 'Teknologi som gjør salgsarbeidet enklere.',
+    text: 'CRM-rådgivning, implementering, systemrydding, AI/automatisering, integrasjoner, adopsjon og rapportering.',
+    price: 'Pris etter avtale',
+    cta: 'Start med CRM-helsesjekk →',
+    featured: false,
+  },
+];
+
+const collaboration = [
+  [
+    'Kartlegging',
+    'Diagnose eller Analyse: forstå nåsituasjon, flaskehalser og hva som bør prioriteres først.',
+  ],
+  [
+    'Rådgivning',
+    'Løpende sparring på strategi, salgsprosess, KPI-er og koordinering – uten at jeg tar over leveransen.',
+  ],
+  [
+    'Gjennomføring',
+    'Avtalte operative leveranser: prospektering, møtebooking, CRM, kampanjer, innhold eller video.',
+  ],
+];
+
+const challenges = [
+  'Lite synlighet hos riktige beslutningstakere',
+  'For få kvalifiserte salgsmuligheter i pipeline',
+  'Tilfeldig prospektering og oppfølging',
+  'CRM som ikke brukes – eller for mange verktøy',
+  'Salgsprosess uten tydelig metodikk og coaching',
+  'Video og innhold som ikke er koblet til salg',
+];
 ---
 <BaseLayout {title} {description} {schema}>
   <main>
-    <SectionHeading eyebrow="Tjenester" title="Moderne salgsprosesser for B2B-selskaper." text="Vi kombinerer salgsforståelse, CRM, AI og praktisk implementering for å bygge salgsprosesser som faktisk fungerer i hverdagen." />
-    <div class="mb-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <a href="/vekstpilot/" class="group rounded-[1.75rem] border border-line bg-ink p-7 text-white transition hover:border-accent">
-        <p class="text-xs font-semibold uppercase tracking-wider text-accent-soft">Metode</p>
-        <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em] group-hover:text-accent-soft">VekstPilot</h2>
-        <p class="mt-4 text-white/60">Kartlegg salgsmotoren din innen fem områder. Teknologi, kultur, nettsider, innhold og salgsaktiviteter. Start med en diagnose.</p>
-        <span class="mt-6 inline-block text-sm font-semibold text-accent-soft">Les mer →</span>
-      </a>
-      <a href="/crm-helsesjekk/" class="group rounded-[1.75rem] border border-line bg-white p-7 transition hover:border-accent">
-        <p class="text-xs font-semibold uppercase tracking-wider text-accent">Gratis</p>
-        <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em]">CRM-helsesjekk</h2>
-        <p class="mt-4 text-muted">Få en enkel vurdering av hvor salgsprosessen lekker. Datakvalitet, oppfølging, pipeline og adopsjon.</p>
-        <span class="mt-6 inline-block text-sm font-semibold text-accent">Les mer →</span>
-      </a>
-      <a href="/dult-partner/" class="group rounded-[1.75rem] border border-line bg-white p-7 transition hover:border-accent">
-        <p class="text-xs font-semibold uppercase tracking-wider text-accent">Partner</p>
-        <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em]">Dult</h2>
-        <p class="mt-4 text-muted">Norsk salgsverktøy for B2B-team som vil ha en enkel CRM-opplevelse. Demo, oppsett og tilpasning som partner.</p>
-        <span class="mt-6 inline-block text-sm font-semibold text-accent">Les mer →</span>
-      </a>
-    </div>
-    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {services.map(([title, text]) => <article class="rounded-[1.75rem] border border-line bg-white p-7"><h2 class="text-2xl font-semibold tracking-[-0.04em]">{title}</h2><p class="mt-4 text-muted">{text}</p></article>)}
-    </div>
-    <section class="mt-20 rounded-[2rem] bg-accent-soft p-8 lg:p-12">
-      <h2 class="max-w-3xl text-4xl font-semibold tracking-[-0.06em]">Typiske prosjekter</h2>
+    <section>
+      <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+        Tjenester · Effekt Digital
+      </p>
+      <h1 class="max-w-3xl text-5xl font-semibold leading-[1.05] tracking-[-0.06em] sm:text-6xl">
+        Fra synlighet til salg. Og fra strategi til handling.
+      </h1>
+      <p class="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
+        Jeg hjelper B2B-bedrifter med å bli mer synlige, skape relevante salgsmuligheter og utvikle
+        salgsprosesser som fungerer. Gjennom rådgivning, innhold, målrettede salgsaktiviteter og smart bruk
+        av teknologi.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/kontakt/" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+          Book en rådgivningsprat
+        </a>
+        <a href="#tjenesteomraader" class="rounded-full border border-line px-6 py-4 text-sm font-semibold">
+          Utforsk tjenestene
+        </a>
+      </div>
+    </section>
+
+    <section id="tjenesteomraader" class="mt-28">
+      <SectionHeading
+        eyebrow="Tre hovedområder"
+        title="Velg inngang etter problemet."
+        text="Du trenger ikke kjøpe alt. Start der det haster mest – så bygger vi videre der det gir effekt."
+      />
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          areas.map((area) => (
+            <a
+              href={area.href}
+              target={area.external ? '_blank' : undefined}
+              rel={area.external ? 'noopener noreferrer' : undefined}
+              class:list={[
+                'group flex flex-col rounded-[1.75rem] border border-line p-7 transition hover:border-accent',
+                area.featured ? 'bg-ink text-white' : 'bg-white',
+              ]}
+            >
+              <p
+                class:list={[
+                  'text-xs font-semibold uppercase tracking-wider',
+                  area.featured ? 'text-accent-soft' : 'text-accent',
+                ]}
+              >
+                {area.badge}
+              </p>
+              <h2 class="mt-2 text-2xl font-semibold tracking-[-0.04em]">{area.title}</h2>
+              <p class:list={['mt-4 flex-1 text-sm leading-relaxed', area.featured ? 'text-white/60' : 'text-muted']}>
+                {area.text}
+              </p>
+              <p class:list={['mt-5 text-sm font-semibold', area.featured ? 'text-white/80' : 'text-ink']}>
+                {area.price}
+              </p>
+              <span
+                class:list={[
+                  'mt-4 inline-block text-sm font-semibold',
+                  area.featured ? 'text-accent-soft' : 'text-accent',
+                ]}
+              >
+                {area.cta}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28">
+      <SectionHeading
+        title="Slik kan vi samarbeide"
+        text="Tre samarbeidsformer – ikke et krav om å kjøpe alle tre."
+      />
+      <div class="grid gap-4 md:grid-cols-3">
+        {
+          collaboration.map(([title, text], i) => (
+            <article class="rounded-[1.75rem] border border-line bg-white p-7">
+              <p class="font-bold text-accent">0{i + 1}</p>
+              <h3 class="mt-6 text-2xl font-semibold tracking-[-0.04em]">{title}</h3>
+              <p class="mt-4 text-muted">{text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] bg-accent-soft p-8 lg:p-12">
+      <h2 class="max-w-3xl text-4xl font-semibold tracking-[-0.06em]">Typiske utfordringer</h2>
       <ul class="mt-8 grid gap-3 text-lg text-muted md:grid-cols-2">
-        <li>• Velge riktig CRM for ny salgsprosess</li>
-        <li>• Rydde opp i eksisterende HubSpot/Pipedrive-oppsett</li>
-        <li>• Bygge AI-assistert leadoppfølging</li>
-        <li>• Koble skjemaer, nyhetsbrev og CRM</li>
-        <li>• Lage pipeline, dashboards og salgsrutiner</li>
-        <li>• Trene teamet slik at løsningen faktisk tas i bruk</li>
+        {challenges.map((item) => <li>• {item}</li>)}
       </ul>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] border border-line bg-white p-8 text-center lg:p-14">
+      <h2 class="text-4xl font-semibold tracking-[-0.04em]">La oss finne ut hvor du bør starte.</h2>
+      <p class="mx-auto mt-4 max-w-md text-muted">
+        En kort prat er nok til å avklare om VideoKlar, VekstPilot eller CRM/Sales Tech er riktig første steg.
+      </p>
+      <a
+        href="/kontakt/"
+        class="mt-8 inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90"
+      >
+        Book en rådgivningsprat
+      </a>
     </section>
   </main>
 </BaseLayout>

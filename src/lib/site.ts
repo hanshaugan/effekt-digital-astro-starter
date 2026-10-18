@@ -3,9 +3,9 @@ export const SITE = {
   legalName: 'Effekt Digital AS',
   orgNumber: '916 282 818',
   url: 'https://www.effektdigital.no',
-  defaultTitle: 'Effekt Digital – Sales enablement for B2B | Innhold, teknologi og prosesser',
+  defaultTitle: 'Effekt Digital – Fra synlighet til salg | B2B-rådgivning',
   defaultDescription:
-    'CRM, AI og sales-tech for B2B-selskaper som vil ha bedre salgsflyt.',
+    'Jeg hjelper B2B-bedrifter med å skape flere salgsmuligheter og gjøre dem om til kunder – gjennom strategi, innhold, salgsaktiviteter og teknologi.',
   locale: 'nb_NO',
   language: 'no',
   email: 'hans@effektdigital.no',

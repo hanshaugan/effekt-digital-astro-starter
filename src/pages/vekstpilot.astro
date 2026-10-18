@@ -12,7 +12,7 @@ import {
 
 const title = 'VekstPilot – Effekt Digital';
 const description =
-  'VekstPilot er Effekt Digitals metode for å bygge en komplett salgsmotor — fra teknologi og kultur til nettsider, innhold og salgsaktiviteter som konverterer.';
+  'VekstPilot hjelper B2B-bedrifter med å skape flere relevante salgsmuligheter – gjennom strategi, innhold, prospektering, salgsaktiviteter og CRM.';
 const url = absoluteUrl('/vekstpilot/');
 const schema = schemaGraph(
   organizationSchema(),
@@ -23,19 +23,15 @@ const schema = schemaGraph(
 const diagSteps = [
   [
     'Kartlegging (90 min)',
-    'Vi går gjennom alle fem elementer med deg og relevante personer i teamet. Strukturert intervju med konkrete spørsmål for hvert område.',
+    'Vi går gjennom strategien og de fem elementene med deg og relevante personer i teamet. Strukturert samtale med konkrete spørsmål.',
   ],
   [
-    'Analyse og rapport',
-    'Du mottar en skriftlig rapport med vurdering av alle fem elementer, identifiserte hull og en prioritert liste over tiltak.',
+    'Kort oppsummering',
+    'Du får en kort skriftlig oppsummering med hovedfunn og anbefalte neste steg – ikke en full rapport.',
   ],
   [
-    'Gjennomgang (30 min)',
-    'Vi presenterer funnene og diskuterer veien videre. Ingen salgspitch, bare en ærlig vurdering av hva som vil ha størst effekt for dere.',
-  ],
-  [
-    'Handlingsplan (90 dager)',
-    'Basert på diagnosen får du en konkret plan for de neste 90 dagene, med tiltak dere kan starte på umiddelbart.',
+    'Neste steg',
+    'Vi avklarer om dere fortsetter selv, går videre til Analyse, eller starter rådgivning/gjennomføring der det haster mest.',
   ],
 ];
 
@@ -43,29 +39,42 @@ const packages = [
   {
     badge: 'Inngang',
     name: 'Diagnose',
-    desc: 'Kartlegging av alle fem elementer. Rapport og handlingsplan du kan gjennomføre selv eller med oss.',
+    desc: '90 min kartlegging, kort oppsummering og anbefalte neste steg. Beløpet kan krediteres mot Analyse, Rådgivning eller Gjennomføring innen 3 måneder.',
     price: 'kr 4 900',
-    note: 'Krediteres videre samarbeid',
+    note: 'Krediteres innen 3 mnd ved videre samarbeid',
     cta: 'Book nå →',
     featured: false,
+    book: true,
   },
   {
-    badge: 'Mest valgt',
-    name: 'Bygg',
-    desc: 'Vi implementerer de 2–3 tiltakene med størst effekt. Prosjektbasert samarbeid med klare leveranser og milepæler.',
-    price: 'Fra kr 28 000',
-    note: 'Per prosjekt — basert på scope',
+    badge: 'Dypere',
+    name: 'Analyse',
+    desc: 'Grundigere analyse, prioriteringer og konkret 90-dagers handlingsplan for de områdene som betyr mest.',
+    price: 'Fra kr 14 900',
+    note: 'Engangs – etter omfang',
     cta: 'Ta kontakt →',
-    featured: true,
+    featured: false,
+    book: false,
   },
   {
     badge: 'Løpende',
-    name: 'Partner',
-    desc: 'Månedlig retainer med løpende sparring og eksekvering på alle fem elementer. For selskaper som vil ha kontinuerlig fart.',
-    price: 'Fra kr 14 900',
-    note: 'Per måned, min. 3 måneder',
+    name: 'Rådgivning',
+    desc: 'Sparring, prioritering, salgsprosess, KPI-er og koordinering. To rådgivningsmøter per måned + kort async mellom møtene. Operativ gjennomføring prises separat.',
+    price: 'Fra kr 9 900/mnd',
+    note: 'Avgrenset til sparring – ikke leveranse',
+    cta: 'Ta kontakt →',
+    featured: true,
+    book: false,
+  },
+  {
+    badge: 'Operativt',
+    name: 'Gjennomføring',
+    desc: 'Avtalte leveranser: prospektering, møtebooking, CRM, kampanjer, innhold eller video – spesifisert i tilbud.',
+    price: 'Tilbud etter omfang',
+    note: 'Aktiviteter, ansvar og kapasitet avtales',
     cta: 'Ta kontakt →',
     featured: false,
+    book: false,
   },
 ];
 ---
@@ -74,13 +83,15 @@ const packages = [
   <!-- Hero -->
   <section>
     <p class="mb-8 inline-flex rounded-full bg-accent-soft px-4 py-2 text-xs font-semibold uppercase tracking-wider text-accent">
-      VekstPilot — av Effekt Digital
+      VekstPilot – av Effekt Digital
     </p>
     <h1 class="max-w-2xl text-5xl font-semibold leading-[1.1] tracking-[-0.05em] sm:text-6xl">
-      Din salgsmotor mangler sannsynligvis ett av fem elementer.
+      Flere salgsmuligheter. En mer systematisk salgsprosess.
     </h1>
-    <p class="mt-6 max-w-lg text-lg leading-relaxed text-muted">
-      VekstPilot er vår metode for å kartlegge hva som faktisk stopper veksten din, og bygge systemet som får alle delene til å virke sammen.
+    <p class="mt-6 max-w-xl text-lg leading-relaxed text-muted">
+      VekstPilot hjelper B2B-bedrifter med å skape flere relevante salgsmuligheter – og følge dem opp til de blir
+      kunder. Vi kombinerer strategi, innhold, prospektering, salgsaktiviteter og CRM i én helhetlig modell. Du får
+      hjelp med det du trenger: rådgivning, konkrete tiltak eller operativ gjennomføring.
     </p>
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <a href="#diagnose" class="inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90">
@@ -94,12 +105,13 @@ const packages = [
   <section class="mt-28 rounded-[2rem] bg-ink px-8 py-10 text-white lg:px-12 lg:py-12">
     <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <h2 class="text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">
-        De fleste B2B-selskaper feiler ikke fordi de mangler ett verktøy. De feiler fordi <span class="text-accent-soft">ingenting henger sammen.</span>
+        De fleste B2B-selskaper feiler ikke fordi de mangler ett verktøy. De feiler fordi{' '}
+        <span class="text-accent-soft">ingenting henger sammen.</span>
       </h2>
       <p class="text-sm leading-relaxed text-white/55 sm:text-base">
-        Gode nettsider hjelper lite hvis salgsaktivitetene er tilfeldige. Godt innhold hjelper lite hvis CRM ikke følger opp leadsene. Og den beste teknologien hjelper lite hvis kulturen i teamet ikke støtter bruken av den.
-        <br /><br />
-        VekstPilot ser på alle fem delene, og hjelper dere å prioritere riktig.
+        Synlighet uten oppfølging gir lite. Prospektering uten CRM gir kaos. God teknologi uten salgsprosess blir
+        hyllesystem. VekstPilot starter med strategien og forbedrer de områdene som har størst betydning for din
+        bedrift – ikke som fem obligatoriske faser, men som én sammenhengende salgsmotor.
       </p>
     </div>
   </section>
@@ -107,11 +119,28 @@ const packages = [
   <!-- Modellen -->
   <section id="modellen" class="mt-28">
     <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Modellen</p>
-    <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">Fem elementer. Én samlet salgsmotor.</h2>
-    <p class="mb-12 max-w-md text-muted">
-      Vekst skjer ikke i ett av områdene. Det skjer i skjæringspunktet mellom alle fem. Klikk på hvert element for å lese mer.
+    <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">
+      Én strategi. Fem elementer. Flere salgsmuligheter.
+    </h2>
+    <p class="mb-12 max-w-xl text-muted">
+      VekstPilot kobler sammen synlighet, prospektering, salgsaktiviteter, salgsprosess og teknologi. Vi starter med
+      strategien og forbedrer de områdene som har størst betydning for din bedrift. Klikk på hvert element for å lese
+      mer.
     </p>
     <VekstPilotWheel />
+    <p class="mt-8 max-w-2xl text-sm text-muted">
+      Ledelse, kompetanse og prestasjonskultur går på tvers av modellen. VideoKlar støtter synlighet og innhold som
+      spesialisert videoleveranse –{' '}
+      <a
+        href="https://videoklar.no"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-semibold text-ink underline decoration-line underline-offset-4 hover:text-accent"
+      >
+        se videoklar.no
+      </a>
+      .
+    </p>
   </section>
 
   <!-- Diagnose -->
@@ -121,15 +150,18 @@ const packages = [
         <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Slik starter vi</p>
         <h2 class="mb-4 text-4xl font-semibold tracking-[-0.04em]">VekstPilot Diagnose</h2>
         <p class="mb-8 max-w-md text-muted">
-          Et strukturert intervju på 90 minutter der vi kartlegger alle fem elementene — og leverer en prioritert handlingsplan.
+          Et strukturert intervju på 90 minutter der vi kartlegger strategien og de fem elementene – og gir deg en
+          kort oppsummering med anbefalte neste steg.
         </p>
         <button
           type="button"
           class="js-open-vekstpilot-book inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90"
         >
-          Book Diagnose — kr 4 900
+          Book Diagnose – kr 4 900
         </button>
-        <p class="mt-3 text-sm text-muted">Beløpet krediteres ved videre samarbeid.</p>
+        <p class="mt-3 text-sm text-muted">
+          Beløpet kan krediteres mot Analyse, Rådgivning eller Gjennomføring innen 3 måneder.
+        </p>
       </div>
       <div class="space-y-6">
         {
@@ -149,22 +181,20 @@ const packages = [
     </div>
   </section>
 
-  <!-- Pakker -->
-  <section class="mt-28">
-    <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Videre samarbeid</p>
+  <!-- Samarbeidsformer -->
+  <section id="samarbeid" class="mt-28">
+    <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Samarbeidsformer</p>
     <h2 class="mb-4 max-w-xl text-4xl font-semibold tracking-[-0.04em]">Velg nivå etter behov</h2>
     <p class="mb-10 max-w-md text-muted">
-      Etter diagnosen vet vi nøyaktig hva som gir mest effekt. Alle pakker bygger på funnene fra Diagnosen.
+      Du kan starte med Diagnose og bygge videre med Analyse, Rådgivning eller Gjennomføring – uten å kjøpe alt.
     </p>
-    <div class="grid gap-4 md:grid-cols-3">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {
         packages.map((pkg) => (
           <article
             class:list={[
               'flex flex-col rounded-[1.75rem] border p-7',
-              pkg.featured
-                ? 'border-line bg-ink text-white'
-                : 'border-line bg-white',
+              pkg.featured ? 'border-line bg-ink text-white' : 'border-line bg-white',
             ]}
           >
             <p class="mb-3 text-[0.7rem] font-semibold uppercase tracking-wider text-accent">{pkg.badge}</p>
@@ -174,23 +204,58 @@ const packages = [
             </p>
             <p class="mt-5 text-2xl font-semibold tracking-[-0.02em]">{pkg.price}</p>
             <p class:list={['mt-1 text-xs', pkg.featured ? 'text-white/35' : 'text-muted']}>{pkg.note}</p>
-            <button
-              type="button"
-              class="js-open-vekstpilot-book mt-5 text-left text-sm font-semibold text-accent transition hover:opacity-70"
-            >
-              {pkg.cta}
-            </button>
+            {
+              pkg.book ? (
+                <button
+                  type="button"
+                  class:list={[
+                    'js-open-vekstpilot-book mt-5 text-left text-sm font-semibold transition hover:opacity-70',
+                    pkg.featured ? 'text-accent-soft' : 'text-accent',
+                  ]}
+                >
+                  {pkg.cta}
+                </button>
+              ) : (
+                <a
+                  href="/kontakt/"
+                  class:list={[
+                    'mt-5 text-sm font-semibold transition hover:opacity-70',
+                    pkg.featured ? 'text-accent-soft' : 'text-accent',
+                  ]}
+                >
+                  {pkg.cta}
+                </a>
+              )
+            }
           </article>
         ))
       }
     </div>
   </section>
 
+  <!-- Møtebooking -->
+  <section class="mt-28 rounded-[2rem] border border-line bg-sand-2 p-8 lg:p-12">
+    <p class="mb-3 text-xs font-semibold uppercase tracking-widest text-accent">Modul</p>
+    <h2 class="mb-4 max-w-xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+      VekstPilot Møtebooking
+    </h2>
+    <p class="max-w-2xl text-muted">
+      Målrettet B2B-prospektering, kvalifisering, personlig oppfølging, booking og CRM-logging. Tilbys primært som
+      avgrenset pilot – ikke som ubegrenset volumtjeneste. Omfang og pris avtales etter målgruppe og kapasitet.
+    </p>
+    <a
+      href="/kontakt/"
+      class="mt-8 inline-flex rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-ink/90"
+    >
+      Ta kontakt om møtebooking
+    </a>
+  </section>
+
   <!-- CTA -->
   <section class="mt-28 rounded-[2rem] border border-line bg-white p-8 text-center lg:p-14">
     <h2 class="text-4xl font-semibold tracking-[-0.04em]">Klar for å se hva som faktisk stopper veksten?</h2>
     <p class="mx-auto mt-4 max-w-md text-muted">
-      Start med en diagnose. 90 minutter gir deg et klarere bilde av salgsmotoren din enn det meste annet.
+      Start med en diagnose. 90 minutter gir deg et klarere bilde av salgsmotoren din – og konkrete neste steg.
     </p>
     <button
       type="button"

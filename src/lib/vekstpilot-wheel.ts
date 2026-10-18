@@ -1,72 +1,97 @@
 export const wheelData = {
-  nettsider: {
-    color: '#1d9e75',
-    tag: 'Indre lag · Motor',
-    title: 'Nettsider',
+  strategi: {
+    color: '#1f5f54',
+    tag: 'Sentrum',
+    title: 'Strategi',
     bullets: [
-      ['Klar posisjonering', 'besøkende forstår hvem dere hjelper på 5 sekunder'],
-      ['Kjøpsreise', 'tydelig vei fra første besøk til møte eller henvendelse'],
-      ['Lavterskelinngang', 'helsesjekk, demo eller kalkulator — ikke bare «kontakt oss»'],
-      ['Tracking', 'dere vet hvor trafikken kommer fra og hva den gjør'],
-      ['Integrert i salg', 'selgerne bruker siden aktivt i salgsprosessen'],
+      ['Mål', 'hva vekst faktisk skal bety for dere'],
+      ['Målgruppe', 'hvem som er relevante – og hvem som ikke er det'],
+      ['Posisjonering', 'hvorfor kunden skal velge dere'],
+      ['Prioriteringer', 'hvilke områder som gir størst effekt nå'],
+      ['KPI-er', 'hva dere måler for å styre og forbedre'],
     ],
     intro:
-      'Nettsiden din skal jobbe som en selger døgnet rundt — struktur, budskap og konvertering.',
+      'Strategien ligger i sentrum: mål, målgruppe, posisjonering, prioriteringer og KPI-er. Derfra forbedrer vi de områdene som har størst betydning for din bedrift.',
+  },
+  synlighet: {
+    color: '#185FA5',
+    tag: 'Element',
+    title: 'Synlighet & innhold',
+    bullets: [
+      ['Nettsider', 'klar posisjonering og vei til kontakt'],
+      ['Video', 'lederprofilering og tillit raskere enn tekst alene'],
+      ['Webinar', 'engasjement og leads gjennom faglig innhold'],
+      ['Faglig innhold', 'nyhetsbrev, artikler og materiel knyttet til salg'],
+      ['Kundetillit', 'referanser og synlighet hos riktige beslutningstakere'],
+    ],
+    intro:
+      'Nettsider, video, webinar, faglig innhold, lederprofilering og kundetillit – synlighet som skaper salgsmuligheter.',
+  },
+  prospektering: {
+    color: '#BA7517',
+    tag: 'Element',
+    title: 'Prospektering',
+    bullets: [
+      ['ICP og målgruppe', 'tydelig bilde av hvem dere skal snakke med'],
+      ['Identifisere bedrifter', 'rette selskaper, ikke tilfeldige lister'],
+      ['Kontaktpersoner', 'finne riktige beslutningstakere'],
+      ['Kontaktårsaker', 'relevante grunner til å ta kontakt'],
+      ['Datakvalitet', 'lister og kilder dere kan stole på'],
+    ],
+    intro:
+      'Målgruppe/ICP, identifisere riktige bedrifter og kontaktpersoner, og relevante kontaktårsaker.',
   },
   salgsaktiviteter: {
     color: '#D85A30',
-    tag: 'Indre lag · Motor',
+    tag: 'Element',
     title: 'Salgsaktiviteter',
     bullets: [
-      ['Definert salgsprosess', 'ikke ulik fra selger til selger'],
-      ['Forutsigbar pipeline', 'dere vet alltid hvor leadsene befinner seg'],
-      ['Lead-kilder', 'nok leads av riktig kvalitet fra forutsigbare kanaler'],
-      ['Follow-up-struktur', 'klart neste steg etter første kontakt, alltid'],
-      ['Selgertid', 'mest mulig tid på kundekontakt, minst mulig på admin'],
+      ['Dialog', 'samtaler som kvalifiserer og bygger tillit'],
+      ['Kvalifisering', 'vite hvem som er klare for møte'],
+      ['Møtebooking', 'systematisk booking – ikke tilfeldig volume'],
+      ['Kontaktsekvenser', 'tydelig neste steg i flere kanaler'],
+      ['Oppfølging', 'ingen leads som faller mellom stolene'],
     ],
     intro:
-      'Riktig frekvens, riktig kanal og riktig timing — salgsaktiviteter som faktisk passer hverdagen.',
+      'Dialog, kvalifisering, møtebooking, kontaktsekvenser og oppfølging – aktiviteter som faktisk fyller kalenderen.',
   },
-  innhold: {
+  salgsprosess: {
     color: '#534AB7',
-    tag: 'Indre lag · Motor',
-    title: 'Innhold',
+    tag: 'Element',
+    title: 'Salgsprosess',
     bullets: [
-      ['Koblet til salgsprosessen', 'ikke bare markedsinnhold for markedets skyld'],
-      ['Svarer på kundespørsmål', 'besvarer det potensielle kunder faktisk lurer på'],
-      ['Case studies', 'konkrete resultater, ikke vage sitater'],
-      ['Video', 'bygger personlig tillit raskere enn tekst alene'],
-      ['Lead-generator', 'innhold som faktisk henter inn henvendelser'],
-    ],
-    intro: 'Innhold som bygger tillit og autoritet over tid — og trekker til seg de rette kundene.',
-  },
-  teknologi: {
-    color: '#185FA5',
-    tag: 'Ytre lag · Fundament',
-    title: 'Teknologi',
-    bullets: [
-      ['CRM som selgerne bruker', 'HubSpot, Pipedrive eller Dult tilpasset prosessen'],
-      ['Automasjon', 'follow-up, dataregistrering og lead-routing på autopilot'],
-      ['AI i hverdagen', 'møtenotater, e-postutkast, lead-scoring'],
-      ['Integrert stack', 'nettside, CRM, e-post og kalender snakker sammen'],
-      ['Digitalt salgsrom', 'Handslag samler kundeinformasjon på ett sted'],
-    ],
-    intro: 'Riktig teknologi — ikke mest mulig. CRM, AI og automasjon som støtter selgerne.',
-  },
-  prestasjonskultur: {
-    color: '#BA7517',
-    tag: 'Ytre lag · Fundament',
-    title: 'Prestasjonskultur',
-    bullets: [
-      ['Tydelige forventninger', 'selgerne vet hva som forventes daglig, ukentlig og månedlig'],
-      ['Riktige KPIer', 'dere måler aktivitet og pipeline, ikke bare sluttsalg'],
-      ['Salgsmøter som gir verdi', 'læring og justering, ikke bare rapportering'],
-      ['Tilbakemeldingskultur', 'trygt å feile og lære'],
-      ['Lederskap i salg', 'salgsleder coacher, ikke bare kontrollerer'],
+      ['Behovsavklaring', 'strukturert vei fra første møte til tilbud'],
+      ['Pipeline', 'oversikt og forutsigbarhet'],
+      ['Metodikk og playbooks', 'samme kvalitet uavhengig av selger'],
+      ['Salgstrening', 'coaching som forbedrer resultatet'],
+      ['Konvertering', 'tilbud, oppfølging og avslutning'],
     ],
     intro:
-      'Uten riktig kultur spiller resten liten rolle. Mål, vaner og ledelse som får teamet til å følge systemet.',
+      'Behovsavklaring, tilbud, pipeline, metodikk, salgstrening, coaching og playbooks.',
+  },
+  crm: {
+    color: '#1d9e75',
+    tag: 'Element',
+    title: 'CRM & Sales Tech',
+    bullets: [
+      ['Valg og implementering', 'system som passer prosessen – ikke omvendt'],
+      ['Automatisering', 'mindre manuelt arbeid, mer konsistens'],
+      ['Integrasjoner', 'nettside, e-post, kalender og CRM snakker sammen'],
+      ['Adopsjon', 'selgerne bruker systemet i hverdagen'],
+      ['Rapportering', 'tall som styrer prioritering'],
+    ],
+    intro:
+      'Valg, implementering, automatisering, integrasjoner, adopsjon og rapportering.',
   },
 } as const;
 
 export type WheelKey = keyof typeof wheelData;
+
+/** Legend order (strategy is center-only; listed first for accessibility). */
+export const wheelLegendKeys = [
+  'synlighet',
+  'prospektering',
+  'salgsaktiviteter',
+  'salgsprosess',
+  'crm',
+] as const satisfies readonly WheelKey[];

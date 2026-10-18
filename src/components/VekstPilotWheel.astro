@@ -1,128 +1,234 @@
 ---
+import { wheelData, wheelLegendKeys } from '../lib/vekstpilot-wheel';
+
+const cx = 250;
+const cy = 250;
+const labelR = 168;
+
+function pt(r: number, deg: number) {
+  const rad = (deg * Math.PI) / 180;
+  return [+(cx + r * Math.cos(rad)).toFixed(2), +(cy + r * Math.sin(rad)).toFixed(2)] as const;
+}
+
+/** Arc for textPath. Flip lower segments so letters stay upright along the curve. */
+function textArc(mid: number, span = 40) {
+  const t0 = mid - span / 2;
+  const t1 = mid + span / 2;
+  const flip = mid > 5 && mid < 175;
+  if (flip) {
+    const [x0, y0] = pt(labelR, t1);
+    const [x1, y1] = pt(labelR, t0);
+    return `M ${x0},${y0} A ${labelR},${labelR} 0 0,0 ${x1},${y1}`;
+  }
+  const [x0, y0] = pt(labelR, t0);
+  const [x1, y1] = pt(labelR, t1);
+  return `M ${x0},${y0} A ${labelR},${labelR} 0 0,1 ${x1},${y1}`;
+}
+
+const segments = [
+  {
+    key: 'synlighet',
+    label: 'SYNLIGHET',
+    color: '#185FA5',
+    mid: -54,
+    span: 42,
+    fontSize: 11,
+    path: 'M 254.65,28.05 A 222,222 0 0,1 459.65,176.99 L 342.55,217.77 A 98,98 0 0,0 252.05,152.02 Z',
+  },
+  {
+    key: 'prospektering',
+    label: 'PROSPEKTERING',
+    color: '#BA7517',
+    mid: 18,
+    span: 44,
+    fontSize: 10.5,
+    path: 'M 462.52,185.83 A 222,222 0 0,1 384.22,426.83 L 309.25,328.06 A 98,98 0 0,0 343.82,221.67 Z',
+  },
+  {
+    key: 'salgsaktiviteter',
+    label: 'SALGSAKTIVITETER',
+    color: '#D85A30',
+    mid: 90,
+    span: 48,
+    fontSize: 9.5,
+    path: 'M 376.7,432.3 A 222,222 0 0,1 123.3,432.3 L 194.07,330.47 A 98,98 0 0,0 305.93,330.47 Z',
+  },
+  {
+    key: 'salgsprosess',
+    label: 'SALGSPROSESS',
+    color: '#534AB7',
+    mid: 162,
+    span: 42,
+    fontSize: 10.5,
+    path: 'M 115.78,426.83 A 222,222 0 0,1 37.48,185.83 L 156.18,221.67 A 98,98 0 0,0 190.75,328.06 Z',
+  },
+  {
+    key: 'crm',
+    label: 'CRM & TECH',
+    color: '#1d9e75',
+    mid: 234,
+    span: 42,
+    fontSize: 11,
+    path: 'M 40.35,176.99 A 222,222 0 0,1 245.35,28.05 L 247.95,152.02 A 98,98 0 0,0 157.45,217.77 Z',
+  },
+] as const;
+
+const labeled = segments.map((seg) => ({
+  ...seg,
+  tp: textArc(seg.mid, seg.span),
+}));
+
+const legendBlurbs: Record<(typeof wheelLegendKeys)[number], string> = {
+  synlighet: 'Nettsider, video, webinar og faglig innhold',
+  prospektering: 'ICP, lister og riktige kontaktårsaker',
+  salgsaktiviteter: 'Dialog, møtebooking og oppfølging',
+  salgsprosess: 'Pipeline, metodikk, trening og coaching',
+  crm: 'Systemer, automasjon og adopsjon',
+};
 ---
 
 <div class="wheel-layout grid items-center gap-10 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16">
   <div class="mx-auto w-full max-w-[min(72vw,280px)] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[420px]">
     <div class="aspect-square w-full">
-    <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" class="h-full w-full" preserveAspectRatio="xMidYMid meet" aria-label="VekstPilot-modellen">
-      <defs>
-        <marker id="arr-right" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-          <path d="M0,0.5 L5,3 L0,5.5" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </marker>
-        <marker id="arr-left" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse">
-          <path d="M0,0.5 L5,3 L0,5.5" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-        </marker>
-        <path id="tp-tek" d="M 62.2,210.08 A 192,192 0 0,1 437.8,210.08" fill="none"></path>
-        <path id="tp-pre" d="M 62.2,289.92 A 192,192 0 0,0 437.8,289.92" fill="none"></path>
-        <path id="tp-net" d="M 276.32,136 A 117,117 0 0,1 361.89,284.21" fill="none"></path>
-        <path id="tp-sal" d="M 156.56,320.41 A 117,117 0 0,0 343.44,320.41" fill="none"></path>
-        <path id="tp-inn" d="M 138.11,284.21 A 117,117 0 0,1 223.68,136" fill="none"></path>
-      </defs>
+      <svg
+        viewBox="0 0 500 500"
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-full w-full"
+        preserveAspectRatio="xMidYMid meet"
+        aria-label="VekstPilot-modellen: strategi i sentrum med fem arbeidsområder"
+        role="img"
+      >
+        <defs>
+          {
+            labeled.map((seg) => (
+              <path id={`tp-${seg.key}`} d={seg.tp} fill="none" />
+            ))
+          }
+        </defs>
 
-      <g class="wheel-seg cursor-pointer transition-opacity hover:opacity-80" data-wheel-key="teknologi">
-        <path d="M 20.14,241.97 A 230,230 0 0,1 479.86,241.97 L 404.91,244.59 A 155,155 0 0,0 95.09,244.59 Z" fill="#185FA5"></path>
-        <text font-family="Inter,sans-serif" font-size="13" font-weight="700" fill="white" letter-spacing="2">
-          <textPath href="#tp-tek" startOffset="50%" text-anchor="middle">TEKNOLOGI</textPath>
-        </text>
-      </g>
-      <g class="wheel-seg cursor-pointer transition-opacity hover:opacity-80" data-wheel-key="prestasjonskultur">
-        <path d="M 479.86,258.03 A 230,230 0 0,1 20.14,258.03 L 95.09,255.41 A 155,155 0 0,0 404.91,255.41 Z" fill="#BA7517"></path>
-        <text font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="white" letter-spacing="1.5">
-          <textPath href="#tp-pre" startOffset="50%" text-anchor="middle">PRESTASJONSKULTUR</textPath>
-        </text>
-      </g>
+        <circle cx="250" cy="250" r="228" fill="none" stroke="#e8e4dc" stroke-width="2" />
 
-      <rect x="17" y="238" width="80" height="24" fill="#f7f5f0"></rect>
-      <rect x="403" y="238" width="80" height="24" fill="#f7f5f0"></rect>
-      <line x1="75" y1="244" x2="28" y2="244" stroke="white" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr-left)"></line>
-      <line x1="425" y1="244" x2="472" y2="244" stroke="white" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr-right)"></line>
-      <line x1="75" y1="257" x2="28" y2="257" stroke="white" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr-left)"></line>
-      <line x1="425" y1="257" x2="472" y2="257" stroke="white" stroke-width="1.8" stroke-linecap="round" marker-end="url(#arr-right)"></line>
+        {
+          labeled.map((seg) => (
+            <g
+              class="wheel-seg cursor-pointer transition-opacity hover:opacity-85"
+              data-wheel-key={seg.key}
+              role="presentation"
+            >
+              <path d={seg.path} fill={seg.color} />
+              <text
+                font-family="Inter,sans-serif"
+                font-size={seg.fontSize}
+                font-weight="700"
+                fill="white"
+                letter-spacing="0.7"
+                class="pointer-events-none select-none"
+              >
+                <textPath href={`#tp-${seg.key}`} startOffset="50%" text-anchor="middle">
+                  {seg.label}
+                </textPath>
+              </text>
+            </g>
+          ))
+        }
 
-      <circle cx="250" cy="250" r="230" fill="none" stroke="#f7f5f0" stroke-width="4"></circle>
-      <circle cx="250" cy="250" r="155" fill="none" stroke="#f7f5f0" stroke-width="7"></circle>
-
-      <g class="wheel-seg cursor-pointer transition-opacity hover:opacity-80" data-wheel-key="nettsider">
-        <path d="M 257.85,100.21 A 150,150 0 0,1 383.65,318.10 L 325.74,288.59 A 85,85 0 0,0 254.45,165.12 Z" fill="#1d9e75"></path>
-        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="white" letter-spacing="1">
-          <textPath href="#tp-net" startOffset="50%" text-anchor="middle">NETTSIDER</textPath>
-        </text>
-      </g>
-      <g class="wheel-seg cursor-pointer transition-opacity hover:opacity-80" data-wheel-key="salgsaktiviteter">
-        <path d="M 375.80,331.70 A 150,150 0 0,1 124.20,331.70 L 178.71,296.29 A 85,85 0 0,0 321.29,296.29 Z" fill="#D85A30"></path>
-        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="white" letter-spacing="0.5">
-          <textPath href="#tp-sal" startOffset="50%" text-anchor="middle">SALGSAKTIVITETER</textPath>
-        </text>
-      </g>
-      <g class="wheel-seg cursor-pointer transition-opacity hover:opacity-80" data-wheel-key="innhold">
-        <path d="M 116.35,318.10 A 150,150 0 0,1 242.15,100.21 L 245.55,165.12 A 85,85 0 0,0 174.26,288.59 Z" fill="#534AB7"></path>
-        <text font-family="Inter,sans-serif" font-size="11.5" font-weight="700" fill="white" letter-spacing="1">
-          <textPath href="#tp-inn" startOffset="50%" text-anchor="middle">INNHOLD</textPath>
-        </text>
-      </g>
-
-      <circle cx="250" cy="250" r="150" fill="none" stroke="#f7f5f0" stroke-width="7"></circle>
-      <circle cx="250" cy="250" r="85" fill="none" stroke="#f7f5f0" stroke-width="5"></circle>
-      <line x1="254.45" y1="165.12" x2="257.85" y2="100.21" stroke="#f7f5f0" stroke-width="6"></line>
-      <line x1="321.29" y1="296.29" x2="375.80" y2="331.70" stroke="#f7f5f0" stroke-width="6"></line>
-      <line x1="178.71" y1="296.29" x2="124.20" y2="331.70" stroke="#f7f5f0" stroke-width="6"></line>
-
-      <circle cx="250" cy="250" r="82" fill="#151515"></circle>
-      <text x="250" y="243" text-anchor="middle" font-family="Inter,sans-serif" font-size="17" font-weight="700" fill="#ffffff" letter-spacing="-0.5">VekstPilot</text>
-      <text x="250" y="263" text-anchor="middle" font-family="Inter,sans-serif" font-size="8.5" font-weight="600" fill="#1f5f54" letter-spacing="1">AV EFFEKT DIGITAL</text>
-    </svg>
+        <g
+          class="wheel-seg cursor-pointer transition-opacity hover:opacity-90"
+          data-wheel-key="strategi"
+          role="presentation"
+        >
+          <circle cx="250" cy="250" r="92" fill="#ffffff" stroke="#1f5f54" stroke-width="2.5" />
+          <text
+            x="250"
+            y="232"
+            text-anchor="middle"
+            font-family="Inter,sans-serif"
+            font-size="15"
+            font-weight="700"
+            fill="#1f5f54"
+            letter-spacing="1.5"
+            class="pointer-events-none select-none"
+          >
+            STRATEGI
+          </text>
+          <text
+            x="250"
+            y="252"
+            text-anchor="middle"
+            font-family="Inter,sans-serif"
+            font-size="7.5"
+            font-weight="500"
+            fill="#6b7280"
+            class="pointer-events-none select-none"
+          >
+            Mål · Målgruppe
+          </text>
+          <text
+            x="250"
+            y="264"
+            text-anchor="middle"
+            font-family="Inter,sans-serif"
+            font-size="7.5"
+            font-weight="500"
+            fill="#6b7280"
+            class="pointer-events-none select-none"
+          >
+            Posisjonering · KPI
+          </text>
+          <text
+            x="250"
+            y="282"
+            text-anchor="middle"
+            font-family="Inter,sans-serif"
+            font-size="9"
+            font-weight="700"
+            fill="#1f5f54"
+            letter-spacing="1"
+            class="pointer-events-none select-none"
+          >
+            VEKSTPILOT
+          </text>
+        </g>
+      </svg>
     </div>
   </div>
 
-  <div class="grid gap-8 sm:grid-cols-2">
-    <div>
-      <p class="mb-4 border-b-2 border-line pb-2 text-xs font-semibold uppercase tracking-[0.12em] text-[#185FA5]">
-        Ytre lag — fundament
-      </p>
-      <div class="space-y-1">
-        <button type="button" class="wheel-legend-item flex w-full gap-3 border-b border-line py-3 text-left transition hover:text-accent" data-wheel-key="teknologi">
-          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#185FA5]"></span>
-          <span>
-            <span class="block font-semibold">Teknologi</span>
-            <span class="text-sm text-muted">CRM, AI og automasjon som faktisk brukes</span>
-          </span>
-        </button>
-        <button type="button" class="wheel-legend-item flex w-full gap-3 border-b border-line py-3 text-left transition hover:text-accent" data-wheel-key="prestasjonskultur">
-          <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#BA7517]"></span>
-          <span>
-            <span class="block font-semibold">Prestasjonskultur</span>
-            <span class="text-sm text-muted">Mål, vaner og ledelse som virker</span>
-          </span>
-        </button>
-      </div>
+  <div>
+    <p class="mb-4 border-b-2 border-line pb-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
+      Fem elementer · klikkbare
+    </p>
+    <div class="space-y-1">
+      <button
+        type="button"
+        class="wheel-legend-item flex w-full gap-3 border-b border-line py-3 text-left transition hover:text-accent"
+        data-wheel-key="strategi"
+      >
+        <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#1f5f54]"></span>
+        <span>
+          <span class="block font-semibold">Strategi</span>
+          <span class="text-sm text-muted">Mål, målgruppe, posisjonering og KPI-er</span>
+        </span>
+      </button>
+      {
+        wheelLegendKeys.map((key) => (
+          <button
+            type="button"
+            class="wheel-legend-item flex w-full gap-3 border-b border-line py-3 text-left transition hover:text-accent"
+            data-wheel-key={key}
+          >
+            <span
+              class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full"
+              style={`background:${wheelData[key].color}`}
+            />
+            <span>
+              <span class="block font-semibold">{wheelData[key].title}</span>
+              <span class="text-sm text-muted">{legendBlurbs[key]}</span>
+            </span>
+          </button>
+        ))
+      }
     </div>
-    <div>
-      <p class="mb-4 border-b-2 border-line pb-2 text-xs font-semibold uppercase tracking-[0.12em] text-accent">
-        Indre lag — motor
-      </p>
-      <div class="space-y-1">
-        {
-          [
-            ['nettsider', '#1d9e75', 'Nettsider', 'Konverterer besøkende til leads'],
-            ['salgsaktiviteter', '#D85A30', 'Salgsaktiviteter', 'Riktig frekvens, kanal og timing'],
-            ['innhold', '#534AB7', 'Innhold', 'Bygger tillit og trekker leads'],
-          ].map(([key, color, name, desc]) => (
-            <button
-              type="button"
-              class="wheel-legend-item flex w-full gap-3 border-b border-line py-3 text-left transition hover:text-accent"
-              data-wheel-key={key}
-            >
-              <span class="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full" style={`background:${color}`}></span>
-              <span>
-                <span class="block font-semibold">{name}</span>
-                <span class="text-sm text-muted">{desc}</span>
-              </span>
-            </button>
-          ))
-        }
-      </div>
-    </div>
-    <p class="col-span-full text-sm italic text-muted">Klikk på et element for å lese mer</p>
+    <p class="mt-4 text-sm italic text-muted">Klikk på et element for å lese mer</p>
   </div>
 </div>
 
@@ -134,20 +240,20 @@
   aria-labelledby="wheel-modal-title"
 >
   <div class="mx-auto flex min-h-[calc(100%-3rem)] max-w-md items-center justify-center">
-  <div id="wheel-modal-dialog" class="relative w-full rounded-2xl bg-white p-6 shadow-xl sm:p-8">
-    <button
-      type="button"
-      id="wheel-modal-close"
-      class="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-sand text-muted transition hover:bg-line"
-      aria-label="Lukk"
-    >
-      ✕
-    </button>
-    <div id="wheel-modal-bar" class="mb-5 h-1 rounded-full"></div>
-    <p id="wheel-modal-tag" class="mb-2 text-xs font-semibold uppercase tracking-[0.12em]"></p>
-    <h3 id="wheel-modal-title" class="mb-4 text-2xl font-semibold tracking-[-0.04em]"></h3>
-    <div id="wheel-modal-body" class="text-sm leading-relaxed text-muted"></div>
-  </div>
+    <div id="wheel-modal-dialog" class="relative w-full rounded-2xl bg-white p-6 shadow-xl sm:p-8">
+      <button
+        type="button"
+        id="wheel-modal-close"
+        class="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-sand text-muted transition hover:bg-line"
+        aria-label="Lukk"
+      >
+        ✕
+      </button>
+      <div id="wheel-modal-bar" class="mb-5 h-1 rounded-full"></div>
+      <p id="wheel-modal-tag" class="mb-2 text-xs font-semibold uppercase tracking-[0.12em]"></p>
+      <h3 id="wheel-modal-title" class="mb-4 text-2xl font-semibold tracking-[-0.04em]"></h3>
+      <div id="wheel-modal-body" class="text-sm leading-relaxed text-muted"></div>
+    </div>
   </div>
 </div>
 
@@ -164,7 +270,7 @@
 
   function openWheel(key) {
     const data = wheelData[key];
-    if (!data || !modal) return;
+    if (!data || !modal || !bar || !tag || !title || !body) return;
 
     bar.style.background = data.color;
     tag.style.color = data.color;
@@ -173,11 +279,12 @@
     body.innerHTML = `
       <p class="mb-3">${data.intro}</p>
       <ul class="list-disc space-y-2 pl-5">
-        ${data.bullets.map(([strong, rest]) => `<li><strong class="text-ink">${strong}</strong> — ${rest}</li>`).join('')}
+        ${data.bullets.map(([strong, rest]) => `<li><strong class="text-ink">${strong}</strong> – ${rest}</li>`).join('')}
       </ul>
     `;
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
   }
 
   function closeWheel() {
@@ -187,7 +294,16 @@
   }
 
   document.querySelectorAll('[data-wheel-key]').forEach((el) => {
-    el.addEventListener('click', () => openWheel(el.getAttribute('data-wheel-key')));
+    const key = el.getAttribute('data-wheel-key');
+    el.addEventListener('click', () => openWheel(key));
+    if (el instanceof HTMLButtonElement) {
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openWheel(key);
+        }
+      });
+    }
   });
 
   closeBtn?.addEventListener('click', closeWheel);
