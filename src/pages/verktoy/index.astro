@@ -1,0 +1,484 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ToolVideoModal from '../../components/ToolVideoModal.astro';
+import { partnerLogo } from '../../lib/partnerLogo';
+import { absoluteUrl } from '../../lib/site';
+import {
+  organizationSchema,
+  schemaGraph,
+  webPageSchema,
+  websiteSchema,
+} from '../../lib/schema';
+
+const title = 'Verktøy og teknologi – Effekt Digital';
+const description =
+  'Verktøy jeg bruker og anbefaler innen CRM, video, prospektering og salgsaktivering – med partner- og affiliatefordeler der det finnes.';
+const url = absoluteUrl('/verktoy/');
+const schema = schemaGraph(
+  organizationSchema(),
+  websiteSchema(),
+  webPageSchema({ title, description, url }),
+);
+
+type ToolVideo = {
+  /** Delingslenke eller embed-URL (YouTube, Wistia, Tella, Vimeo). */
+  src: string;
+  /** Vises i modal og på knappen, f.eks. «2 min – slik bruker jeg Softsync». */
+  title?: string;
+};
+
+type Tool = {
+  name: string;
+  /** Filnavn uten endelse i public/images/partners/ (f.eks. «pipedrive»). */
+  slug: string;
+  description: string;
+  benefit?: string;
+  href?: string;
+  contactHref?: string;
+  partner?: boolean;
+  affiliate?: boolean;
+  usesMyself?: boolean;
+  ownProduct?: boolean;
+  promoCode?: string;
+  video?: ToolVideo;
+};
+
+type Category = {
+  id: string;
+  title: string;
+  text: string;
+  tools: Tool[];
+};
+
+const categories: Category[] = [
+  {
+    id: 'crm',
+    title: 'CRM og salgsverktøy',
+    text: 'Systemer som gir oversikt i pipeline, aktiviteter og oppfølging – uten at selgerne drukner i administrasjon.',
+    tools: [
+      {
+        name: 'Pipedrive',
+        slug: 'pipedrive',
+        description:
+          'Salgs-CRM med visuell pipeline, aktiviteter og automatisering – laget for at team skal bruke mer tid på å lukke deals.',
+        benefit: '30 dagers gratis prøveperiode',
+        href: 'https://app.pipedrive.com/affiliate/pdp-effekt?utm_source=Effekt+Digital+AS&utm_medium=partners_program&utm_content=copy_text&utm_term=pdp-effekt',
+        contactHref: '/kontakt/',
+        partner: true,
+        usesMyself: true,
+      },
+      {
+        name: 'Dult',
+        slug: 'dult',
+        description:
+          'Norsk salgsverktøy laget for selgere: enkelt å ta i bruk, god oversikt og positiv «dulting» som holder salgsarbeidet i gang.',
+        contactHref: '/dult-partner/',
+        partner: true,
+        video: {
+          src: 'https://fast.wistia.net/embed/iframe/y0sc3jvbbi',
+          title: '2 min – introduksjon til Dult',
+        },
+      },
+      {
+        name: 'Softsync',
+        slug: 'softsync',
+        description:
+          'AI-CRM for mindre team der leads, notater, booking, skjema og oppfølging samles – uten tung dataregistrering.',
+        benefit: '30 % rabatt og 30 dagers gratis prøve',
+        promoCode: 'FOUNDER30SSX',
+        href: 'https://affiliate.softsync.ai/51kj44dsrmpz',
+        affiliate: true,
+        usesMyself: true,
+        video: {
+          src: 'https://www.youtube.com/watch?v=8AFw6PMrNN8',
+          title: 'Se Softsync presentert av gründeren',
+        },
+      },
+    ],
+  },
+  {
+    id: 'video',
+    title: 'Video og webinar',
+    text: 'Fra opptak og redigering til hosting og webinar – verktøy som gjør video praktisk i salg og markedsføring.',
+    tools: [
+      {
+        name: 'TwentyThree',
+        slug: 'twentythree',
+        description:
+          'Video- og webinarplattform for profesjonell videomarkedsføring, hosting og leadgenerering.',
+        contactHref: '/kontakt/',
+        partner: true,
+        usesMyself: true,
+      },
+      {
+        name: 'Riverside',
+        slug: 'riverside',
+        description:
+          'AI-plattform for å ta opp, redigere og republisere studio-kvalitet podcast og video direkte i nettleseren.',
+        href: 'https://affiliate.riverside.com/yqhssfp5i3wl',
+        affiliate: true,
+        usesMyself: true,
+      },
+      {
+        name: 'Wistia',
+        slug: 'wistia',
+        description:
+          'Videohosting og webinarplattform for bedrifter, med analyse og kobling til markedsføringssystemer.',
+        href: 'https://try.wistia.com/edy8v8fnm1ll',
+        affiliate: true,
+        usesMyself: true,
+      },
+      {
+        name: 'Descript',
+        slug: 'descript',
+        description:
+          'AI-basert video- og lydredigering der du klipper opptaket ved å redigere teksten – som i et dokument.',
+        benefit: '50 % avslag første 2 mnd på Creator-planen',
+        href: 'https://descript.cello.so/9cPcBNaCJHR',
+        affiliate: true,
+        usesMyself: true,
+      },
+      {
+        name: 'Tella',
+        slug: 'tella',
+        description:
+          'Skjermopptak og AI-redigering for raske demoer, async-meldinger og produktdemoer – uten å bytte mellom apper.',
+        benefit: '20 % avslag i 3 mnd',
+        href: 'https://refer.tella.com/hans-haugan',
+        affiliate: true,
+        usesMyself: true,
+      },
+    ],
+  },
+  {
+    id: 'prospektering',
+    title: 'Prospektering og outreach',
+    text: 'Verktøy for å finne riktige leads og følge dem opp systematisk på tvers av kanaler.',
+    tools: [
+      {
+        name: 'Lemlist',
+        slug: 'lemlist',
+        description:
+          'Outbound-plattform for å finne leads og kjøre personlig outreach på e-post, LinkedIn og flere kanaler.',
+        href: 'https://get.lemlist.com/qdzvwsx3gwrz',
+        affiliate: true,
+        usesMyself: true,
+      },
+    ],
+  },
+  {
+    id: 'nyhetsbrev',
+    title: 'Nyhetsbrev',
+    text: 'Plattformer for å bygge relasjon og synlighet over tid – direkte i innboksen.',
+    tools: [
+      {
+        name: 'Beehiiv',
+        slug: 'beehiiv',
+        description:
+          'Nyhetsbrevplattform for å lage, vokse og monetisere e-post – med referanser, anbefalinger og betalte abonnement.',
+        benefit: '14 dager gratis + 20 % avslag første 3 mnd',
+        href: 'https://www.beehiiv.com?via=hans-haugan',
+        affiliate: true,
+        usesMyself: true,
+      },
+    ],
+  },
+  {
+    id: 'innhold-salgsrom',
+    title: 'Innhold og digitale salgsrom',
+    text: 'Verktøy som samler kunnskap, tilbud og kjøpsreise – slik at kunden får det de trenger for å si ja.',
+    tools: [
+      {
+        name: 'Fagrom',
+        slug: 'fagrom',
+        description:
+          'Kurs- og innholdsplattform der du lager delbare kurs med tekst, video og CTA for å bygge tillit og generere leads.',
+        href: 'https://fagrom.no/',
+      },
+      {
+        name: 'Handslag',
+        slug: 'handslag',
+        description:
+          'Digitalt salgsrom der du samler video, presentasjon, tilbud og (snart) signering på én sikker side for kunden.',
+        href: 'https://handslag.no/',
+        ownProduct: true,
+      },
+    ],
+  },
+];
+
+const allMeta = {
+  title: 'Alle verktøy',
+  text: 'Bla gjennom hele katalogen, eller velg en kategori for å zoome inn.',
+};
+
+const categoryMeta: Record<string, { title: string; text: string }> = {
+  all: allMeta,
+  ...Object.fromEntries(categories.map((c) => [c.id, { title: c.title, text: c.text }])),
+};
+
+const tools = categories.flatMap((category) =>
+  category.tools.map((tool) => ({
+    ...tool,
+    categoryId: category.id,
+  })),
+);
+
+const filterOptions = [
+  { id: 'all', label: 'Alle' },
+  ...categories.map((c) => ({ id: c.id, label: c.title })),
+];
+---
+
+<BaseLayout {title} {description} {schema}>
+  <main data-verktoy>
+    <section>
+      <p class="mb-5 inline-flex rounded-full bg-accent-soft px-4 py-2 text-sm font-semibold text-accent">
+        Verktøy · Teknologi
+      </p>
+      <h1 class="max-w-3xl text-5xl font-bold leading-[1.08] tracking-[-0.04em] sm:text-6xl lg:text-7xl">
+        Verktøy jeg bruker og anbefaler.
+      </h1>
+      <p class="mt-6 max-w-2xl text-xl leading-relaxed text-muted">
+        Jeg er ikke bundet til én plattform. Her er teknologien jeg faktisk jobber med – valgt fordi den
+        hjelper B2B-team med synlighet, salgsmuligheter og bedre arbeidsflyt.
+      </p>
+      <p class="mt-4 max-w-2xl text-base leading-relaxed text-muted">
+        Noen lenker er affiliate-lenker. Det betyr at jeg kan få provisjon hvis du blir kunde – uten at det
+        koster deg mer. Jeg anbefaler bare verktøy jeg tror på.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#katalog" class="rounded-full bg-ink px-6 py-4 text-sm font-semibold text-white">
+          Se katalog
+        </a>
+        <a href="/kontakt/" class="rounded-full border border-line px-6 py-4 text-sm font-semibold">
+          Trenger du hjelp til å velge?
+        </a>
+      </div>
+    </section>
+
+    <section id="katalog" class="mt-20 scroll-mt-8" data-verktoy-katalog>
+      <div
+        class="rounded-2xl border border-line bg-white/80 px-3 py-3 sm:px-4"
+        data-verktoy-filter
+      >
+        <p class="sr-only" id="verktoy-filter-label">Filtrer etter kategori</p>
+        <div
+          class="flex gap-2 overflow-x-auto pb-0.5"
+          role="tablist"
+          aria-labelledby="verktoy-filter-label"
+        >
+          {
+            filterOptions.map((option, index) => (
+              <button
+                type="button"
+                role="tab"
+                data-filter={option.id}
+                aria-selected={index === 0 ? 'true' : 'false'}
+                class:list={[
+                  'shrink-0 rounded-full px-4 py-2 text-sm font-semibold transition',
+                  index === 0
+                    ? 'bg-ink text-white'
+                    : 'border border-line bg-sand text-muted hover:border-ink/20 hover:text-ink',
+                ]}
+              >
+                {option.label}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="mt-10 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:gap-14" data-filter-heading>
+        <div>
+          <p class="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-accent">Kategori</p>
+          <h2
+            class="max-w-3xl text-4xl font-semibold leading-[1.08] tracking-[-0.05em] sm:text-5xl lg:text-6xl"
+            data-filter-title
+          >
+            {allMeta.title}
+          </h2>
+        </div>
+        <p class="max-w-2xl text-xl leading-relaxed text-muted lg:pt-[2.15rem]" data-filter-text>
+          {allMeta.text}
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-4 md:grid-cols-2" data-tool-grid>
+        {
+          tools.map((tool) => {
+            const tags = [
+              tool.ownProduct ? 'Egen løsning' : null,
+              tool.partner ? 'Partner' : null,
+              tool.affiliate ? 'Affiliate' : null,
+              tool.usesMyself ? 'Bruker selv' : null,
+            ].filter(Boolean) as string[];
+
+            const primaryHref = tool.href ?? tool.contactHref;
+            const primaryLabel = tool.href
+              ? 'Prøv via min lenke →'
+              : tool.contactHref
+                ? 'Kontakt meg →'
+                : null;
+            const secondaryHref = tool.href && tool.contactHref ? tool.contactHref : undefined;
+            const videoTitle = tool.video?.title ?? `Gjennomgang av ${tool.name}`;
+            const logo = partnerLogo(tool.slug);
+
+            return (
+              <article
+                class="flex flex-col rounded-[1.75rem] border border-line bg-white p-7"
+                data-tool-card
+                data-category={tool.categoryId}
+              >
+                <div class="flex flex-wrap items-center gap-2">
+                  {logo ? (
+                    <span class="inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-sand p-1.5">
+                      <img
+                        src={logo}
+                        alt=""
+                        width="28"
+                        height="28"
+                        class="h-7 w-7 object-contain"
+                        loading="lazy"
+                      />
+                    </span>
+                  ) : (
+                    <span
+                      class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-sand text-sm font-semibold text-ink"
+                      aria-hidden="true"
+                    >
+                      {tool.name.slice(0, 1)}
+                    </span>
+                  )}
+                  <h3 class="text-2xl font-semibold tracking-[-0.04em]">{tool.name}</h3>
+                </div>
+
+                {tags.length > 0 && (
+                  <ul class="mt-4 flex flex-wrap gap-2">
+                    {tags.map((tag) => (
+                      <li class="rounded-full bg-sand px-3 py-1 text-xs font-semibold uppercase tracking-wider text-muted">
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                <p class="mt-4 flex-1 text-base leading-relaxed text-muted">{tool.description}</p>
+
+                {(tool.benefit || tool.promoCode) && (
+                  <p class="mt-4 text-sm font-medium text-ink">
+                    {tool.benefit}
+                    {tool.benefit && tool.promoCode ? ' · ' : ''}
+                    {tool.promoCode && (
+                      <>
+                        Kode: <span class="font-semibold tracking-wide">{tool.promoCode}</span>
+                      </>
+                    )}
+                  </p>
+                )}
+
+                {(primaryHref || secondaryHref || tool.video) && (
+                  <div class="mt-6 flex flex-wrap gap-3">
+                    {tool.video && (
+                      <button
+                        type="button"
+                        data-tool-video={tool.video.src}
+                        data-tool-video-title={videoTitle}
+                        class="inline-flex items-center gap-2 rounded-full border border-line bg-sand px-5 py-3 text-sm font-semibold text-ink transition hover:border-ink/25"
+                      >
+                        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                          <path d="M8 6.8v10.4a1 1 0 0 0 1.5.86l8.4-5.2a1 1 0 0 0 0-1.72l-8.4-5.2A1 1 0 0 0 8 6.8Z" />
+                        </svg>
+                        Se gjennomgang
+                      </button>
+                    )}
+                    {primaryHref && primaryLabel && (
+                      <a
+                        href={primaryHref}
+                        target={tool.href ? '_blank' : undefined}
+                        rel={tool.href ? 'noopener noreferrer sponsored' : undefined}
+                        class="rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white"
+                      >
+                        {primaryLabel}
+                      </a>
+                    )}
+                    {secondaryHref && (
+                      <a
+                        href={secondaryHref}
+                        class="rounded-full border border-line px-5 py-3 text-sm font-semibold"
+                      >
+                        Spør meg først
+                      </a>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })
+        }
+      </div>
+    </section>
+
+    <section class="mt-28 rounded-[2rem] bg-ink px-8 py-12 text-white lg:px-12">
+      <h2 class="max-w-2xl text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">
+        Usikker på hvilken stack som passer?
+      </h2>
+      <p class="mt-4 max-w-xl text-lg leading-relaxed text-white/70">
+        Da tar vi en prat om prosess, modenhet og hva dere faktisk trenger – før dere kjøper mer
+        teknologi.
+      </p>
+      <a
+        href="/kontakt/"
+        class="mt-8 inline-flex rounded-full bg-white px-6 py-4 text-sm font-semibold text-ink"
+      >
+        Book en rådgivningsprat
+      </a>
+    </section>
+  </main>
+
+  <ToolVideoModal />
+</BaseLayout>
+
+<script
+  define:vars={{
+    categoryMeta,
+  }}
+>
+  const root = document.querySelector('[data-verktoy]');
+  if (root) {
+    const buttons = root.querySelectorAll('[data-filter]');
+    const cards = root.querySelectorAll('[data-tool-card]');
+    const titleEl = root.querySelector('[data-filter-title]');
+    const textEl = root.querySelector('[data-filter-text]');
+
+    const setFilter = (id) => {
+      const meta = categoryMeta[id] || categoryMeta.all;
+
+      buttons.forEach((btn) => {
+        const active = btn.dataset.filter === id;
+        btn.setAttribute('aria-selected', String(active));
+        btn.classList.toggle('bg-ink', active);
+        btn.classList.toggle('text-white', active);
+        btn.classList.toggle('border', !active);
+        btn.classList.toggle('border-line', !active);
+        btn.classList.toggle('bg-sand', !active);
+        btn.classList.toggle('text-muted', !active);
+      });
+
+      if (titleEl) titleEl.textContent = meta.title;
+      if (textEl) textEl.textContent = meta.text;
+
+      cards.forEach((card) => {
+        const show = id === 'all' || card.dataset.category === id;
+        card.hidden = !show;
+        card.classList.toggle('hidden', !show);
+      });
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        setFilter(btn.dataset.filter || 'all');
+      });
+    });
+  }
+</script>
